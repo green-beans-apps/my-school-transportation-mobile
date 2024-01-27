@@ -1,25 +1,39 @@
 <main id="main">
   <div id="container">
-    <h2 id="title-login"> Crie uma nova conta</h2>
     <div id="form">
-      <ion-input [(ngModel)]="formRegister.name" [counter]="true" fill="solid" labelPlacement="floating" label="Nome"
-      maxlength="40" type="text"></ion-input>
-      <ion-input [(ngModel)]="formRegister.email" [counter]="true" fill="solid" labelPlacement="floating" label="Email"
-      maxlength="40" type="text"></ion-input>
-      <span id="container-input-password">
-        <ion-input [(ngModel)]="formRegister.password" [counter]="true" fill="solid" labelPlacement="floating" label="Senha"
-        maxlength="40" type="text"></ion-input>
+      <div id="title-container">
+        <div id="aesthetic-detail-of-the-title"></div>
+        <h2 id="title-login">Cadastrar-se</h2>
+      </div>
+      <ion-input [(ngModel)]="formRegister.name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40"
+        type="text" class="ion-input-color">
+        <ion-icon class="ion-icon-color" slot="start" name="person-sharp" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-input [(ngModel)]="formRegister.email" [counter]="true" labelPlacement="floating" label="Email"
+        maxlength="40" type="text" class="ion-input-color">
+        <ion-icon class="ion-icon-color" slot="start" name="mail-sharp" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <ion-input [(ngModel)]="formRegister.cpf" [counter]="true" labelPlacement="floating" label="CPF" maxlength="40"
+        type="text" class="ion-input-color">
+        <ion-icon class="ion-icon-color" slot="start" name="id-card-sharp" aria-hidden="true"></ion-icon>
+      </ion-input>
+      <span id="container-input-password" class="ion-input-color">
+        <ion-input [(ngModel)]="formRegister.password" [counter]="true" labelPlacement="floating" label="Senha"
+          maxlength="40" type="password" class="ion-input-color">
+          <ion-icon class="ion-icon-color" slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+        </ion-input>
         <span id="span-required-error" *ngIf="requiredInputsError">Os campos de cadastro são obrigatórios.</span>
         <span id="span-required-error" *ngIf="InvalidEmailSpanError">Email não é válido.</span>
         <span id="span-required-error" *ngIf="InvalidPasswordSpanError">A senha deve ter mais de 5 caracteres.</span>
       </span>
       <button expand="block" fill="solid" id="button-submit" (click)="register()">
-        Registre-se
+        Cadastrar-se
       </button>
-      <span id="spran-redirect-login"> 
-        Já tem uma conta?
-        <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" id="link-redirect-login">Faça login.</a>
-      </span>
     </div>
+    <span id="spran-redirect-login">
+      Já tem uma conta?
+      <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" id="link-redirect-login">Faça
+        login.</a>
+    </span>
   </div>
 </main>
