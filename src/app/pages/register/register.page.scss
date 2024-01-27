@@ -6,11 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #262626;
+  background-color: #fff;
 }
 
 #container {
-  gap: 60px;
+  gap: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,11 +21,40 @@
 }
 
 #title-login {
-  color: #FFF;
+  color: #262626;
   font-family: 'Roboto', sans-serif;  
   font-size: 28px;
   font-weight: 700;
   line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+#title-container {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.ion-icon-color {
+  color: #262626
+}
+
+.ion-input-color {
+  color: #262626
+}
+
+.ion-input-color:focus {
+  --ion-color-base: #F6AD09
+}
+
+#aesthetic-detail-of-the-title {
+  width: 5px;
+  height: 30px;
+  background-color: #FBBC04;
 }
 
 #span-keep {
@@ -38,7 +67,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 25px
+  gap: 20px
 }
 
 
@@ -49,17 +78,17 @@
   border: 1px solid rgba(255, 255, 255, 0.20);
   background: #FBBC04;
   margin-top: 5px;
-  color: #262626;
+  color: #fff;
   font-family: 'Roboto', sans-serif;  
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
 }
 #button-submit:hover {
   cursor: pointer;
 }
 
 #spran-redirect-login {
-  color: #FFF;
+  color: #262626;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;  
 }
