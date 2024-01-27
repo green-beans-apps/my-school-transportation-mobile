@@ -22,8 +22,8 @@
 
 #title-login {
   color: #262626;
-  font-family: 'Roboto', sans-serif;  
-  font-size: 28px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
   font-weight: 700;
   line-height: normal;
   margin: 0;
@@ -79,10 +79,11 @@
   background: #FBBC04;
   margin-top: 5px;
   color: #fff;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
+
 #button-submit:hover {
   cursor: pointer;
 }
@@ -90,16 +91,16 @@
 #spran-redirect-login {
   color: #262626;
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
 #link-redirect-login {
   color: #FBBC04;
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
-#span-required-error {
+.span-required-error {
   color: rgb(255, 127, 127);
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
