@@ -6,29 +6,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #262626;
+  background-color: #fff;
 }
 
 #container {
-  gap: 20px;
+  gap: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: transparent;
   padding: 55px;
-}
-
-#title-login {
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;  
-  font-size: 32px;
-  font-weight: 700;
-  line-height: normal;
-}
-
-#span-keep {
-  color: #FBBC04;
+  border-radius: 10px;
 }
 
 #form {
@@ -37,44 +26,51 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 25px
+  gap: 20px
 }
 
-.input-form {
-  width: 280px;
+#title-container {
+  width: 100%;
   height: 30px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  background: rgba(255, 255, 255, 0.05);
-  margin-top: 5px;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 16px;
-}
-.input-form:focus {
-  border: 1px solid #FBBC04;
-  box-shadow: 0 0 0 0;
-  outline: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
-.input-form-error {
-  width: 280px;
+#aesthetic-detail-of-the-title {
+  width: 5px;
   height: 30px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid rgb(255, 127, 127);
-  background: rgba(255, 255, 255, 0.05);
-  margin-top: 5px;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 16px;
+  background-color: #FBBC04;
 }
-.input-form-error:focus {
-  border: 1px solid #FBBC04;
-  box-shadow: 0 0 0 0;
-  outline: 0;
+
+
+#title-login {
+  color: #262626;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
 }
+
+.ion-input-color {
+  color: #262626
+}
+
+.ion-icon-color {
+  color: #262626
+}
+
+.ion-input-color:focus {
+  --ion-color-base: #F6AD09
+}
+
+.invalid-credentials-span {
+  color: rgb(255, 127, 127);
+}
+
 
 #button-submit {
   width: 100%;
@@ -83,31 +79,32 @@
   border: 1px solid rgba(255, 255, 255, 0.20);
   background: #FBBC04;
   margin-top: 5px;
-  color: #262626;
-  font-family: 'Roboto', sans-serif;  
-  font-size: 20px;
-  font-weight: 700;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
 }
+
 #button-submit:hover {
   cursor: pointer;
 }
 
 #spran-redirect-login {
-  color: #FFF;
+  color: #262626;
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
 #link-redirect-login {
   color: #FBBC04;
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
-#invalid-credentials-span {
+.span-required-error {
   color: rgb(255, 127, 127);
-  font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 }
 
 #container-input-password {
@@ -115,8 +112,4 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
-
-.error-email {
-  border: 1px solid rgb(255, 127, 127);
 }
