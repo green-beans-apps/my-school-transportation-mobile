@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Conductor } from 'src/app/entities/Conductor';
 
 type loginResponse = {
-  authToken: string,
-  userId: string
+  token: string,
+  conductorId: string
 }
 
 @Injectable({
@@ -20,7 +20,7 @@ export class ConductorService {
   
   constructor(private http: HttpClient) { }
 
-  login(data: {cpf: string, password: string}): Observable<loginResponse> {
+  login(data: {login: string, password: string}): Observable<loginResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
