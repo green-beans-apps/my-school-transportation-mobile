@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
+import { ConductorService } from 'src/app/services/conductor/conductor.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
 
   invalidCredentials = false
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private conductorService: ConductorService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -38,15 +39,15 @@ export class LoginPage implements OnInit {
     //remove os caracteres especiais do cpf
     this.formLogin.login = this.formLogin.login.replace(/[.-]/g, '')
 
-    this.userService.login(this.formLogin).subscribe(
+    this.conductorService.login(this.formLogin).subscribe(
       (result: { token: string; conductorId: string }) => {
-        window.localStorage.setItem('authToken', `Bearer ${result.token}`);
-        window.localStorage.setItem('userId', result.conductorId);
+        window.localStorage.setItem('token', `Bearer ${result.token}`);
+        window.localStorage.setItem('conductorId', result.conductorId);
         this.formLogin = {
           login: '',
           password: ''
         }
-        //this.router.navigate(['']);
+        this.router.navigate(['']);
       },
       (error: any) => {
         this.invalidCredentials = true;
