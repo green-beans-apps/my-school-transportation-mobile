@@ -10,7 +10,7 @@
 }
 
 #container {
-  gap: 40px;
+  gap: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,14 +47,10 @@
   color: #262626
 }
 
-.ion-input-color:focus {
-  --ion-color-base: #F6AD09
-}
-
 #aesthetic-detail-of-the-title {
   width: 5px;
   height: 30px;
-  background-color: #FBBC04;
+  background-color: #F6AD09;
 }
 
 #span-keep {
@@ -76,12 +72,13 @@
   height: 40px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.20);
-  background: #FBBC04;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  background: #F6AD09;
   margin-top: 5px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 #button-submit:hover {
