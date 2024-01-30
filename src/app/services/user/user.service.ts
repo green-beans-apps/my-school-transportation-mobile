@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface loginResponse {
-  authToken: string;
-  userId: string;
+  token: string;
+  conductorId: string;
 }
 
 @Injectable({
@@ -12,13 +12,13 @@ interface loginResponse {
 })
 export class UserService {
 
-  private urlLogin: string = 'http://localhost:8080/user/login'
+  private urlLogin: string = 'http://localhost:8080/auth/login'
 
-  private urlRegister: string = 'http://localhost:8080/user'
+  private urlRegister: string = 'http://localhost:8080/conductor'
   
   constructor(private http: HttpClient) { }
 
-  login(data: {email: string, password: string}): Observable<loginResponse> {
+  login(data: {login: string, password: string}): Observable<loginResponse> {
     return this.http.post<loginResponse>(this.urlLogin, data)
   }
 

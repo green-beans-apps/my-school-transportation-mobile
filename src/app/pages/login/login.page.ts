@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class LoginPage implements OnInit {
 
   formLogin = {
-    email: '',
+    login: '',
     password: ''
   }
 
@@ -27,26 +28,30 @@ export class LoginPage implements OnInit {
     this.invalidCredentials = false;
     this.requiredInput = false;
     if (
-      this.formLogin.email === '' ||
+      this.formLogin.login === '' ||
       this.formLogin.password === ''
     ) {
       this.requiredInput = true;
       return;
     }
+
+    //remove os caracteres especiais do cpf
+    this.formLogin.login = this.formLogin.login.replace(/[.-]/g, '')
+
     this.userService.login(this.formLogin).subscribe(
-      (result: { authToken: string; userId: string }) => {
-        window.localStorage.setItem('authToken', `Bearer ${result.authToken}`);
-        window.localStorage.setItem('userId', result.userId);
+      (result: { token: string; conductorId: string }) => {
+        window.localStorage.setItem('authToken', `Bearer ${result.token}`);
+        window.localStorage.setItem('userId', result.conductorId);
         this.formLogin = {
-          email: '',
+          login: '',
           password: ''
         }
-        this.router.navigate(['']);
+        //this.router.navigate(['']);
       },
       (error: any) => {
         this.invalidCredentials = true;
         this.formLogin = {
-          email: '',
+          login: '',
           password: ''
         }
       }
