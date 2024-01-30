@@ -109,3 +109,8 @@
   flex-direction: column;
   gap: 15px;
 }
+
+ion-input {
+  --highlight-color-focused: #F6AD09;
+  --highlight-color-valid: #F6AD09;
+}
