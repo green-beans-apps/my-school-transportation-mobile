@@ -46,8 +46,8 @@ export class HomePage {
   }
 
   logOut() {
-    window.localStorage.removeItem('authToken')
-    window.localStorage.removeItem('userId')
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('conductorId')
     window.location.reload()
   }
 }
