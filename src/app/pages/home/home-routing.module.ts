@@ -4,34 +4,29 @@ import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomePage,
     children: [
       {
         path: 'students',
-        children:[
-          {
-            path: '',
-            loadChildren: () => import('../students/students.module').then(m => m.StudentsPageModule)
-          }
-        ]
+        loadChildren: () => import('../students/students.module').then(m => m.StudentsPageModule)
       },
       {
         path: 'settings',
-        children:[
-          {
-            path: '',
-            loadChildren: () => import('../settings/settings-routing.module').then(m => m.SettingsPageRoutingModule)
-          }
-        ]
-      }
+        loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/home/students',
+        pathMatch: 'full'
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/students',
+    redirectTo: '/home/students',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({
