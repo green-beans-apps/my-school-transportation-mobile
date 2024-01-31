@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Conductor } from 'src/app/entities/Conductor';
+import { conductor } from 'src/app/entities/conductor';
 
 type loginResponse = {
   token: string,
@@ -29,12 +29,12 @@ export class ConductorService {
     return this.http.post<loginResponse>(this.urlLogin, data, httpOptions)
   }
 
-  register(data: {name: string, email: string,cpf: string, password: string}): Observable<Conductor> {
+  register(data: {name: string, email: string,cpf: string, password: string}): Observable<conductor> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     }
-    return this.http.post<Conductor>(this.urlRegister, data, httpOptions)
+    return this.http.post<conductor>(this.urlRegister, data, httpOptions)
   }
 }
