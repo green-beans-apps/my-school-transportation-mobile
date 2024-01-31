@@ -1,12 +1,25 @@
 import { createAction, createReducer, on, props } from '@ngrx/store';
 import { note } from '../entities/note';
+import { conductor } from '../entities/conductor';
+import { student } from '../entities/student';
+import { studentActions } from './studentActions';
+import { conductortActions } from './conductorAdtions';
 
 export interface IAppState {
-  notes: note[]
+  notes: note[];
+  conductor: conductor;
+  students: student[];
 }
 
 export const appInitialState: IAppState = {
   notes: [],
+  conductor: {
+    name: '',
+    email: '',
+    cpf: '',
+    id: 0
+  },
+  students: []
 };
 
 
@@ -19,6 +32,9 @@ export const saveNoteAction = createAction("[APP] save note", props<{ id: string
 
 export const appReducer = createReducer(
   appInitialState,
+  on(studentActions.setStudentsAction, (state, { students }) => ({ ...state, students: students})),
+  on(conductortActions.setConductorAction, (state, { conductor }) => ({ ...state, conductor: conductor})),
+
   on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes})),
   on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId)})),
   on(updateNoteAction, (state, { noteId, title, description }) => ({
