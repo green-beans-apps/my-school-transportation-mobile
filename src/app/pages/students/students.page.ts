@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsPage implements OnInit {
 
+  students: any[] = []
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  activeButton: string | null = "todos";
+
+  setActiveButton(button: string): void {
+    this.activeButton = button === this.activeButton ? null : button;
+  }
 }
