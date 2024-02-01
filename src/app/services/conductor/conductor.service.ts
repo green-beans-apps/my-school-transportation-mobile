@@ -2,11 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { conductor } from 'src/app/entities/conductor';
-
-type loginResponse = {
-  token: string,
-  conductorId: string
-}
+import { loginResponse } from './response/loginResponse';
 
 @Injectable({
   providedIn: 'root'
