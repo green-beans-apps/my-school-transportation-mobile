@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { note } from 'src/app/entities/note';
 import { NoteService } from 'src/app/services/note/note.service';
 import {IAppState, deleteNoteAction, loadNotesAction, saveNoteAction, updateNoteAction} from 'src/app/store/app.state';
+import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
   selector: 'app-home',
@@ -12,38 +13,13 @@ import {IAppState, deleteNoteAction, loadNotesAction, saveNoteAction, updateNote
 })
 export class HomePage {
 
-  notes$ = this.store.select('app').pipe(
-    map(e => e.notes)
-  )
+  constructor(private store: Store<{app: IAppState}>) {}
 
-  popUpCreateNoteIsOpen = false
-
-  constructor(private store: Store<{app: IAppState}>, private noteService: NoteService) {}
-
-  updateNote({noteId, description, title}:{noteId: string, description: string, title: string}) {
-    this.store.dispatch(updateNoteAction({noteId: noteId, description: description, title: title}))
-  }
 
   ngOnInit() {
-    this.store.dispatch(loadNotesAction())
+   this.store.dispatch(studentActions.loadStudentsAction())
   }
 
-  deleteNote(noteId: string) {
-    this.store.dispatch(deleteNoteAction({noteId:noteId}))
-  }
-
-  togglePopUpCreateNote() {
-    this.popUpCreateNoteIsOpen = !this.popUpCreateNoteIsOpen
-  }
-
-  saveNote(data: {title: string, description: string}) {
-    this.noteService.save(data).subscribe((newNote: note) => {
-      this.store.dispatch(saveNoteAction(newNote))
-      this.togglePopUpCreateNote()
-    }, (err) => {
-      console.log(err)
-    })
-  }
 
   logOut() {
     window.localStorage.removeItem('token')
