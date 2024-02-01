@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffectsService } from './store/app-effects.service';
+import { StudentEffectsService } from './store/student-effects.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,7 @@ import { AppEffectsService } from './store/app-effects.service';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AppEffectsService])
+    EffectsModule.forRoot([StudentEffectsService])
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
