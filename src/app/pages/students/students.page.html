@@ -5,11 +5,11 @@
     <button [class.active]="activeButton === 'tarde'" (click)="setActiveButton('tarde')">Tarde</button>
   </header>
   <div id="container-students-count">
-    <h3 id="students-count">{{students.length}} Alunos cadastrados</h3>
+    <h3 id="students-count">{{students$.toPromise.length}} Alunos cadastrados</h3>
   </div>
   <ion-list>
-    <ion-item button lines="full">
-      <app-student-card></app-student-card>
+    <ion-item button lines="full" *ngFor="let student of (students$ | async)">
+      <app-student-card [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift"></app-student-card>
     </ion-item>
   </ion-list>
 </ion-content>
