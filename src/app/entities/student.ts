@@ -6,6 +6,7 @@ export interface student {
   id: string;
   name: string;
   school: string;
+  shift: string;
   grade: string;
   transportationType: transportationType;
   monthlyPayment: string;
