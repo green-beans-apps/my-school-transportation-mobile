@@ -17,7 +17,7 @@ export const appInitialState: IAppState = {
     name: '',
     email: '',
     cpf: '',
-    id: 0
+    id: ''
   },
   students: []
 };
