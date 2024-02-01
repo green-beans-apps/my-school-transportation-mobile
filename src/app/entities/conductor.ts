@@ -4,5 +4,5 @@ export interface conductor {
   name: string;
   email: string;
   cpf: string;
-  id: number;
+  id: string;
 }
