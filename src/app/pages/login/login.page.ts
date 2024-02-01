@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
 import { ConductorService } from 'src/app/services/conductor/conductor.service';
+import { loginResponse } from 'src/app/services/conductor/response/loginResponse';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/app.state';
+import { setConductorAction } from 'src/app/store/conductorAdtions';
+import { conductor } from 'src/app/entities/conductor';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +25,7 @@ export class LoginPage implements OnInit {
 
   invalidCredentials = false
 
-  constructor(private conductorService: ConductorService, private router: Router) { }
+  constructor(private store: Store<{app: IAppState}>, private conductorService: ConductorService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,13 +45,14 @@ export class LoginPage implements OnInit {
     this.formLogin.login = this.formLogin.login.replace(/[.-]/g, '')
 
     this.conductorService.login(this.formLogin).subscribe(
-      (result: { token: string; conductorId: string }) => {
+      (result: loginResponse) => {
         window.localStorage.setItem('token', `Bearer ${result.token}`);
-        window.localStorage.setItem('conductorId', result.conductorId);
+        window.localStorage.setItem('conductorId', result.conductor.id);
         this.formLogin = {
           login: '',
           password: ''
         }
+        this.store.dispatch(setConductorAction({conductor: result.conductor}))
         this.router.navigate(['']);
       },
       (error: any) => {
