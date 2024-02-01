@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { transportationType } from 'src/app/entities/enums/transportationType';
 
 @Component({
   selector: 'app-student-card',
@@ -12,7 +13,7 @@ export class StudentCardComponent  implements OnInit {
   @Input()
   payment: string = '180'
   @Input()
-  transportationType: string = 'ida & volta'
+  transportationType: transportationType = transportationType.IDA_E_VOLTA
   @Input()
   shift: string = 'Manhã'
 
