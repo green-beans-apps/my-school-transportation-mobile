@@ -1,0 +1,64 @@
+<ion-content [fullscreen]="true" *ngIf="(student$ | async) as student">
+  <div id="container-buttons-header">
+    <button (click)="returnHome()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+    <button class="buttons-header">
+      <ion-icon name="create-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-avatar">
+    <div id="avatar">
+      <p id="title-avatar">U</p>
+    </div>
+    <h3 id="name-avatar">{{student.name}}</h3>
+    <h5 id="address-avatar">{{student.address.district}}, {{student.address.city}}-PE</h5>
+  </div>
+  <div id="container-list-attributes">
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="business-outline"></ion-icon>
+      <h4 class="title-atributte">Escola:</h4>
+      <h4 class="result-title-atribute">{{student.school}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="school-outline"></ion-icon>
+      <h4 class="title-atributte">Série:</h4>
+      <h4 class="result-title-atribute">{{student.grade}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="cash-outline"></ion-icon>
+      <h4 class="title-atributte">Mensalidade:</h4>
+      <h4 class="result-title-atribute">R$ {{student.monthlyPayment}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="calendar-outline"></ion-icon>
+      <h4 class="title-atributte">Vencimento da mensalidade:</h4>
+      <h4 class="result-title-atribute">{{student.monthlyPaymentExpiration}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
+      <h4 class="title-atributte">Endereço:</h4>
+      <h4 class="result-title-atribute">{{student.address.street}}, {{student.address.houseNumber}} - {{student.address.district}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
+      <h4 class="title-atributte">Referência:</h4>
+      <h4 class="result-title-atribute">{{student.address.referencePoint}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="people-outline"></ion-icon>
+      <h4 class="title-atributte">Responsável:</h4>
+      <h4 class="result-title-atribute">{{student.responsible.name}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="mail-outline"></ion-icon>
+      <h4 class="title-atributte">Email:</h4>
+      <h4 class="result-title-atribute">{{student.responsible.email}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="call-outline"></ion-icon>
+      <h4 class="title-atributte">Celular:</h4>
+      <h4 class="result-title-atribute">{{student.responsible.phone}}</h4>
+    </div>
+  </div>
+</ion-content>
