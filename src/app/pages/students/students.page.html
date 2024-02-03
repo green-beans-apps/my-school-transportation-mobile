@@ -4,8 +4,8 @@
     <button [class.active]="activeButton === 'MANHA'" (click)="setActiveButton('MANHA')">Manhã</button>
     <button [class.active]="activeButton === 'TARDE'" (click)="setActiveButton('TARDE')">Tarde</button>
   </header>
-  <div id="container-students-count">
-    <h3 id="students-count">{{students$.toPromise.length}} Alunos cadastrados</h3>
+  <div id="container-students-count" *ngIf="(renderingStudents$ | async) as students">
+    <h3 id="students-count">{{students.length}} Alunos cadastrados</h3>
   </div>
   <ion-list>
     <ion-item button lines="full" *ngFor="let student of (renderingStudents$ | async)">
