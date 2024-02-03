@@ -1,15 +1,15 @@
 <ion-content [fullscreen]="true">
   <header>
-    <button [class.active]="activeButton === 'todos'" (click)="setActiveButton('todos')">Todos</button>
-    <button [class.active]="activeButton === 'manha'" (click)="setActiveButton('manha')">Manhã</button>
-    <button [class.active]="activeButton === 'tarde'" (click)="setActiveButton('tarde')">Tarde</button>
+    <button [class.active]="activeButton === 'TODOS'" (click)="setActiveButton('TODOS')">Todos</button>
+    <button [class.active]="activeButton === 'MANHA'" (click)="setActiveButton('MANHA')">Manhã</button>
+    <button [class.active]="activeButton === 'TARDE'" (click)="setActiveButton('TARDE')">Tarde</button>
   </header>
   <div id="container-students-count">
     <h3 id="students-count">{{students$.toPromise.length}} Alunos cadastrados</h3>
   </div>
   <ion-list>
-    <ion-item button lines="full" *ngFor="let student of (students$ | async)">
-      <app-student-card [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift"></app-student-card>
+    <ion-item button lines="full" *ngFor="let student of (renderingStudents$ | async)">
+      <app-student-card (click)="selectStudent(student.id)" [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift"></app-student-card>
     </ion-item>
   </ion-list>
 </ion-content>
