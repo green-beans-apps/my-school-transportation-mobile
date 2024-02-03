@@ -19,7 +19,6 @@ export class StudentEffectsService {
 
   public loadStudentsEffect$ = createEffect(() => this.actions$.pipe(
     ofType(studentActions.loadStudentsAction),
-    tap(() => console.log("novo effect")),
     switchMap(() =>
       this.studentService.getAll()
     ),
