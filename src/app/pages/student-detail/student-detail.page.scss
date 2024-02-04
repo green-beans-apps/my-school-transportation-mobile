@@ -122,3 +122,14 @@ ion-list {
   margin: 0;
   padding: 0;
 }
+
+#container-title-payment {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#container-payment {
+  display: flex;
+  justify-content: space-between;
+}

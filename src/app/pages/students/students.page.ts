@@ -26,7 +26,6 @@ export class StudentsPage implements OnInit {
   ngOnInit() {
   }
   
-  
   setActiveButton(button: string): void {
     this.activeButton = button === this.activeButton ? button : button;
     this.renderingStudents$ = this.students$.pipe(

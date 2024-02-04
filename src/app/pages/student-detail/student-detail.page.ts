@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
 import { student } from 'src/app/entities/student';
 import { IAppState } from 'src/app/store/app.state';
+import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
   selector: 'app-student-detail',
@@ -27,6 +28,7 @@ export class StudentDetailPage implements OnInit {
 
   ngOnInit() {
     this.studentId = this.activatedRouter.snapshot.paramMap.get('id') ?? '';
+    this.store.dispatch(studentActions.loadStudentsAction())
   }
 
   returnHome() {
@@ -38,5 +40,9 @@ export class StudentDetailPage implements OnInit {
       map(e => e.students),
       map(students => students.find(student => student.id === studentId))
     );
+  }
+
+  redirectPaymentDetails() {
+    this.router.navigate(['/payment-detail', this.studentId]);
   }
 }
