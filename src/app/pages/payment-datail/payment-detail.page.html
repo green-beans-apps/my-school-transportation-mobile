@@ -1,0 +1,13 @@
+<ion-content [fullscreen]="true" *ngIf="(student$ | async) as student">
+  <div id="container-buttons-header">
+    <button (click)="returnPage()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-student-name">
+    <h1 id="student-name">{{student.name}}</h1>
+  </div>
+  <div id="container-payments" *ngFor="let payment of paymentsRender">
+    <app-payment-card [month]="payment.paymentMonth" [paymentDate]="payment.paymentDate" [valuePayment]="payment.price"></app-payment-card>
+  </div>
+</ion-content>
