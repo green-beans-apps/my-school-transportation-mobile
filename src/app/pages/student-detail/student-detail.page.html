@@ -25,20 +25,13 @@
       <h4 class="title-atributte">Série:</h4>
       <h4 class="result-title-atribute">{{student.grade}}</h4>
     </div>
-    <div class="atributte">
-      <ion-icon class="icon-atributte" name="time-outline"></ion-icon>
-      <h4 class="title-atributte">Turno: </h4>
-      <h4 class="result-title-atribute">{{student.shift }}</h4>
-    </div>
-    <div class="atributte">
-      <ion-icon class="icon-atributte" name="bus-outline"></ion-icon>
-      <h4 class="title-atributte">Tipo de transporte: </h4>
-      <h4 class="result-title-atribute">{{ student.transportationType }}</h4>
-    </div>
-    <div class="atributte">
-      <ion-icon class="icon-atributte" name="cash-outline"></ion-icon>
-      <h4 class="title-atributte">Mensalidade:</h4>
-      <h4 class="result-title-atribute">R$ {{student.monthlyPayment}}</h4>
+    <div class="atributte" id="container-payment" (click)="redirectPaymentDetails()">
+      <div id="container-title-payment">
+        <ion-icon class="icon-atributte" name="cash-outline"></ion-icon>
+        <h4 class="title-atributte">Mensalidade:</h4>
+        <h4 class="result-title-atribute">R$ {{student.monthlyPayment}}</h4>
+      </div>
+      <ion-icon class="icon-atributte" name="chevron-forward-outline"></ion-icon>
     </div>
     <div class="atributte">
       <ion-icon class="icon-atributte" name="calendar-outline"></ion-icon>
