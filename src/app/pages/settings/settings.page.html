@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>settings</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">settings</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="(conductor$ | async) as conductor">
+  <div id="container-buttons-header">
+    <button (click)="exit()" class="buttons-header">
+      <ion-icon name="exit-outline"></ion-icon>
+    </button>
+    <button class="buttons-header">
+      <ion-icon name="create-outline"></ion-icon>
+    </button>
+  </div>>
+  <div id="container-avatar">
+    <div id="avatar">
+      <p id="title-avatar">D</p>
+    </div>
+    <h3 id="name-avatar">{{conductor.name}}</h3>
+    <h5 id="address-avatar"></h5>
+  </div>
+  <div id="container-list-attributes">
+    <div class="atributte">
+      <ion-icon class="icon-atributte" slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+      <h4 class="title-atributte">Email: </h4>
+      <h4 class="result-title-atribute">{{conductor.email}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" slot="start" name="id-card-outline" aria-hidden="true"></ion-icon>
+      <h4 class="title-atributte">Cpf: </h4>
+      <h4 class="result-title-atribute">{{conductor.cpf}}</h4>
+    </div>
+  </div>
 </ion-content>
