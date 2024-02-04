@@ -11,7 +11,7 @@ export class StudentCardComponent  implements OnInit {
   @Input()
   name: string = 'John Smith'
   @Input()
-  payment: string = '180'
+  payment: number = 0
   @Input()
   transportationType: transportationType = transportationType.IDA_E_VOLTA
   @Input()

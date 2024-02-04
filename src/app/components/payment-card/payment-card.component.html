@@ -1,0 +1,9 @@
+<div class="payment-card">
+  <div class="container-info-card">
+    <h3 class="title-card">{{month}}</h3>
+    <p class="details-payment">Valor: R$ {{valuePayment}}</p>
+    <P class="details-payment">Status: <span>{{statusPayment}}</span></P>
+    <p *ngIf="statusPayment === 'Pago'" class="details-payment">Data do pagamento: {{paymentDate}}</p>
+  </div>
+  <button *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
+</div>
