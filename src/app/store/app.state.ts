@@ -4,6 +4,7 @@ import { conductor } from '../entities/conductor';
 import { student } from '../entities/student';
 import { studentActions } from './studentActions';
 import { conductortActions } from './conductorAdtions';
+import { resetActions } from './resetActions';
 
 export interface IAppState {
   notes: note[];
@@ -34,7 +35,8 @@ export const appReducer = createReducer(
   appInitialState,
   on(studentActions.setStudentsAction, (state, { students }) => ({ ...state, students: students})),
   on(conductortActions.setConductorAction, (state, { conductor }) => ({ ...state, conductor: conductor})),
-
+  on(resetActions.reset, () => appInitialState),
+  
   on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes})),
   on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId)})),
   on(updateNoteAction, (state, { noteId, title, description }) => ({
