@@ -45,4 +45,27 @@ export class StudentsPage implements OnInit {
     this.router.navigate(['/student-detail', studentId]);
   }
   
+  private getTransportationTypeLabel(transportationType: string): string {
+    switch (transportationType) {
+      case "IDA_E_VOLTA":
+        return "Ida & Volta";
+      case "IDA":
+        return "Ida";
+      case "VOLTA":
+        return "Volta";
+      default:
+        return '';
+    }
+  }
+
+  private getShiftLabel(shift: string): string {
+    switch (shift) {
+      case "MANHA":
+        return "Manhã";
+      case "TARDE":
+        return "Tarde";
+      default:
+        return '';
+    }
+  }
 }
