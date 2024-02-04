@@ -92,11 +92,12 @@ ion-list {
 
 .atributte {
   width: 90%;
-  border-bottom: 1px solid #D9D9D9;
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  padding: 7px;
+    border-bottom: 1px solid #D9D9D9;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 7px;
+    align-items: center;
 }
 
 .icon-atributte {
