@@ -1,5 +1,6 @@
 import { address } from "./address";
 import { transportationType } from "./enums/transportationType";
+import { payment } from "./payment";
 import { responsible } from "./responsible";
 
 export interface student {
@@ -9,8 +10,9 @@ export interface student {
   shift: string;
   grade: string;
   transportationType: transportationType;
-  monthlyPayment: string;
+  monthlyPayment: number;
   monthlyPaymentExpiration: string;
   responsible: responsible;
   address: address;
+  payments: payment[];
 }
