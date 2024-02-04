@@ -28,7 +28,8 @@ export class SettingsPage implements OnInit {
   exit() {
     localStorage.clear();
     this.store.dispatch(resetActions.reset());
-    this.router.navigate(['/login']);
+    window.localStorage.clear()
+    window.location.reload()
   }
 
 }
