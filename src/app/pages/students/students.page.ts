@@ -43,5 +43,9 @@ export class StudentsPage implements OnInit {
   selectStudent(studentId: string): void {
     this.router.navigate(['/student-detail', studentId]);
   }
+
+  redirectRegisterStudent(): void {
+    this.router.navigate(['/register-student']);
+  }
   
 }
