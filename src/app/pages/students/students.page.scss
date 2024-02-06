@@ -60,3 +60,25 @@ ion-list {
   background-color: #ffffff;
   margin: 0;
 }
+
+#button-register-student {
+  width: 140px;
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-55%);
+  z-index: 999;
+  background-color: #F6AD09;
+  color: #FFF;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#icon-register-student {
+  font-size: 18px;
+}

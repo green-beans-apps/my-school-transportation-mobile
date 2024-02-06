@@ -12,4 +12,9 @@
       <app-student-card (click)="selectStudent(student.id)" [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift"></app-student-card>
     </ion-item>
   </ion-list>
+
+  <button id="button-register-student" (click)="redirectRegisterStudent()">
+    <ion-icon id="icon-register-student" name="link-outline"></ion-icon>
+    Cadastrar Aluno
+  </button>
 </ion-content>
