@@ -24,6 +24,11 @@ const routes: Routes = [
     path: 'payment-detail/:id',
     loadChildren: () => import('./pages/payment-datail/payment-detail.module').then( m => m.PaymentDetailPageModule)
   },
+  {
+    path: 'register-student',
+    loadChildren: () => import('./pages/register-student/register-student.module').then( m => m.RegisterStudentPageModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
