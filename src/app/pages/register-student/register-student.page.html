@@ -1,0 +1,107 @@
+<ion-content [fullscreen]="true">
+  <div id="container-buttons-header">
+    <button (click)="returnHome()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-title">
+    <span class="detail-title"></span>
+    <h1>Cadastrar Aluno</h1>
+  </div>
+  <form [formGroup]="studentForm" #formDir="ngForm" id="container-register-student-form">
+    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.name.invalid && formDir.submitted" class="span-erros">Digite um nome de aluno válido</span>
+
+    <ion-input formControlName="school" [counter]="true" labelPlacement="floating" label="Escola" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="business-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.school.invalid && formDir.submitted" class="span-erros">O campo "Escola" é obrigatório</span>
+
+    <ion-input formControlName="grade" [counter]="true" labelPlacement="floating" label="Série" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="school-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.grade.invalid && formDir.submitted" class="span-erros">O campo "Série" é obrigatório</span>
+
+    <div id="container-select-transport">
+      <ion-select formControlName="transportType" label-placement="stacked" label-placement="floating" label="Tipo de transporte" interface="popover">
+        <ion-icon slot="start" name="bus-outline" aria-hidden="true"></ion-icon>
+        <ion-select-option value="opcao1">Ida e volta</ion-select-option>
+        <ion-select-option value="opcao2">Ida</ion-select-option>
+        <ion-select-option value="opcao3">Volta</ion-select-option>
+      </ion-select>
+      <span *ngIf="studentForm.controls.transportType.invalid && formDir.submitted" class="span-erros">O campo "Tipo de transporte" é obrigatório</span>
+    </div>
+
+    <ion-input formControlName="monthlyPayment" id="input-monthly-payment" [counter]="true" labelPlacement="floating" label="Mensalidade" maxlength="40"
+      type="text" class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="cash-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.monthlyPayment.invalid && formDir.submitted" class="span-erros">O campo "Mensalidade" é obrigatório</span>
+
+    <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">O campo "Data de vencimento" é
+      obrigatório</span>
+
+    <h2>Responsável</h2>
+    <ion-input formControlName="responsibleName" [counter]="true" labelPlacement="floating" label="Nome do Responsável" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="people-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.responsibleName.invalid && formDir.submitted" class="span-erros">O campo "Nome do Responsável" é obrigatório</span>
+
+    <ion-input formControlName="email" [counter]="true" labelPlacement="floating" label="Email" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.email.invalid && formDir.submitted" class="span-erros">Digite um Email válido</span>
+
+    <ion-input formControlName="phone" [counter]="true" labelPlacement="floating" label="Telefone" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.phone.invalid && formDir.submitted" class="span-erros">Digite um Telefone válido</span>
+
+    <h2>Endereço</h2>
+    <ion-input formControlName="city" [counter]="true" labelPlacement="floating" label="Cidade" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.city.invalid && formDir.submitted" class="span-erros">O campo "Cidade" é obrigatório</span>
+
+    <ion-input formControlName="district" [counter]="true" labelPlacement="floating" label="Bairro" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.district.invalid   && formDir.submitted" class="span-erros">O campo "Bairro" é obrigatório</span>
+
+    <ion-input formControlName="street" [counter]="true" labelPlacement="floating" label="Rua" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.street.invalid && formDir.submitted" class="span-erros">O campo "Rua" é obrigatório</span>
+
+    <ion-input formControlName="houseNumber" [counter]="true" labelPlacement="floating" label="Número" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.houseNumber.invalid && formDir.submitted" class="span-erros">O campo "Número" é obrigatório</span>
+
+    <ion-input formControlName="referencePoint" [counter]="true" labelPlacement="floating" label="Ponto de Refêrencia" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="studentForm.controls.referencePoint.invalid && formDir.submitted" class="span-erros">O campo "Ponto de referencia" é obrigatório</span>
+    <div id="container-button-submit-form">
+      <button id="button-submit-form">Cadastrar</button>
+    </div>
+  </form>
+
+</ion-content>
