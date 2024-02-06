@@ -17,7 +17,7 @@ export class StudentDetailPage implements OnInit {
 
   student$ = this.store.select('app').pipe(
     map(e => e.students),
-    switchMap(students => this.getStudentById(students, this.studentId))
+    map(students => students.find(student => student.id === this.studentId))
   );
 
   constructor(
@@ -35,14 +35,37 @@ export class StudentDetailPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  private getStudentById(students: student[], studentId: string): Observable<student | undefined> {
-    return this.store.select('app').pipe(
-      map(e => e.students),
-      map(students => students.find(student => student.id === studentId))
-    );
-  }
-
+  
   redirectPaymentDetails() {
     this.router.navigate(['/payment-detail', this.studentId]);
+  }
+
+  private getShiftLabel(student: student | undefined): student | undefined {
+    if (student !== undefined) {
+      switch (student.shift) {
+        case "MANHA":
+          student.shift = "Manhã";
+          break
+        case "TARDE":
+          student.shift = "Tarde";
+          break
+      }
+      return student
+
+    }
+    return student
+  }
+
+  private getTransportationTypeLabel(transportationType: string): string {
+    switch (transportationType) {
+      case "IDA_E_VOLTA":
+        return "Ida & Volta";
+      case "IDA":
+        return "Ida";
+      case "VOLTA":
+        return "Volta";
+      default:
+        return '';
+    }
   }
 }
