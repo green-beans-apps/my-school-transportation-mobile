@@ -9,23 +9,6 @@ import { Router } from '@angular/router';
 })
 export class RegisterStudentPage implements OnInit {
 
-  errosInput = {
-    name: false,
-    school: false,
-    grade: false,
-    transportType: false,
-    monthlyPayment: false,
-    monthlyPaymentExpiration: false,
-    responsibleName: false, 
-    email: false,
-    phone: false,
-    city: false,
-    district: false,
-    street: false,
-    referencePoint: false,
-    houseNumber: false
-  }
-
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected studentForm = this.formBuilderService.group({
@@ -48,7 +31,31 @@ export class RegisterStudentPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
 
+  submitForm(): void {
+    const requestData = {
+      student: {
+        studentName: this.studentForm.value.name,
+        school: this.studentForm.value.school,
+        grade: this.studentForm.value.grade,
+        monthlyPayment: this.studentForm.value.monthlyPayment,
+        monthlyPaymentExpiration: this.studentForm.value.monthlyPaymentExpiration,
+        conductorId: window.localStorage.getItem('conductorId'),
+      },
+      responsible: {
+        responsibleName: this.studentForm.value.responsibleName,
+        email: this.studentForm.value.email,
+        phoneNumber: this.studentForm.value.phone,
+      },
+      address: {
+        city: this.studentForm.value.city,
+        district: this.studentForm.value.district,
+        street: this.studentForm.value.street,
+        referencePoint: this.studentForm.value.referencePoint,
+        houseNumber: this.studentForm.value.houseNumber
+      }
+    }
   }
 
   returnHome() {
