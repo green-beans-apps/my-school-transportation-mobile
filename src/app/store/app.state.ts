@@ -36,6 +36,10 @@ export const appReducer = createReducer(
   on(studentActions.setStudentsAction, (state, { students }) => ({ ...state, students: students})),
   on(conductortActions.setConductorAction, (state, { conductor }) => ({ ...state, conductor: conductor})),
   on(resetActions.reset, () => appInitialState),
+  on(studentActions.registerStudentAction, (state, { student }) => ({
+    ...state,
+    students: [...state.students, student]
+  })),
   
   on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes})),
   on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId)})),
