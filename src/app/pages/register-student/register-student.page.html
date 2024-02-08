@@ -27,14 +27,23 @@
     </ion-input>
     <span *ngIf="studentForm.controls.grade.invalid && formDir.submitted" class="span-erros">O campo "Série" é obrigatório</span>
 
-    <div id="container-select-transport">
+    <div class="container-select">
       <ion-select formControlName="transportType" label-placement="stacked" label-placement="floating" label="Tipo de transporte" interface="popover">
         <ion-icon slot="start" name="bus-outline" aria-hidden="true"></ion-icon>
-        <ion-select-option value="opcao1">Ida e volta</ion-select-option>
-        <ion-select-option value="opcao2">Ida</ion-select-option>
-        <ion-select-option value="opcao3">Volta</ion-select-option>
+        <ion-select-option [value]="transportationTypes.idaEVolta">Ida e volta</ion-select-option>
+        <ion-select-option [value]="transportationTypes.ida">Ida</ion-select-option>
+        <ion-select-option [value]="transportationTypes.volta">Volta</ion-select-option>
       </ion-select>
       <span *ngIf="studentForm.controls.transportType.invalid && formDir.submitted" class="span-erros">O campo "Tipo de transporte" é obrigatório</span>
+    </div>
+
+    <div class="container-select">
+      <ion-select formControlName="shift" label-placement="stacked" label-placement="floating" label="Turno" interface="popover">
+        <ion-icon slot="start" name="alarm-outline" aria-hidden="true"></ion-icon>
+        <ion-select-option [value]="shiftTypes.manha">Manhã</ion-select-option>
+        <ion-select-option [value]="shiftTypes.tarde">tarde</ion-select-option>
+      </ion-select>
+      <span *ngIf="studentForm.controls.shift.invalid && formDir.submitted" class="span-erros">O campo "Turno" é obrigatório</span>
     </div>
 
     <ion-input formControlName="monthlyPayment" id="input-monthly-payment" [counter]="true" labelPlacement="floating" label="Mensalidade" maxlength="40"
@@ -100,7 +109,7 @@
     </ion-input>
     <span *ngIf="studentForm.controls.referencePoint.invalid && formDir.submitted" class="span-erros">O campo "Ponto de referencia" é obrigatório</span>
     <div id="container-button-submit-form">
-      <button id="button-submit-form">Cadastrar</button>
+      <button (click)="submitForm()" id="button-submit-form">Cadastrar</button>
     </div>
   </form>
 
