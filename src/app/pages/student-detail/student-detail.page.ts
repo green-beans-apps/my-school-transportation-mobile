@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
+import { shift } from 'src/app/entities/enums/shift';
 import { student } from 'src/app/entities/student';
 import { IAppState } from 'src/app/store/app.state';
 import { studentActions } from 'src/app/store/studentActions';
@@ -40,32 +41,4 @@ export class StudentDetailPage implements OnInit {
     this.router.navigate(['/payment-detail', this.studentId]);
   }
 
-  private getShiftLabel(student: student | undefined): student | undefined {
-    if (student !== undefined) {
-      switch (student.shift) {
-        case "MANHA":
-          student.shift = "Manhã";
-          break
-        case "TARDE":
-          student.shift = "Tarde";
-          break
-      }
-      return student
-
-    }
-    return student
-  }
-
-  private getTransportationTypeLabel(transportationType: string): string {
-    switch (transportationType) {
-      case "IDA_E_VOLTA":
-        return "Ida & Volta";
-      case "IDA":
-        return "Ida";
-      case "VOLTA":
-        return "Volta";
-      default:
-        return '';
-    }
-  }
 }
