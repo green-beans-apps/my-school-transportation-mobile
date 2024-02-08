@@ -15,7 +15,7 @@ export class StudentEffectsService {
     private actions$: Actions,
     private studentService: StudentService,
     private store: Store<{ app: IAppState }>
-  ) {}
+  ) { }
 
   public loadStudentsEffect$ = createEffect(() => this.actions$.pipe(
     ofType(studentActions.loadStudentsAction),
@@ -25,6 +25,14 @@ export class StudentEffectsService {
     tap((students) =>
       this.store.dispatch(studentActions.setStudentsAction({ students: students }))
     ),
-    map( () => studentActions.successSetStudentAction())
+    map(() => studentActions.successSetStudentAction())
+  ))
+
+  public registerStudentEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.registerStudentAction),
+    switchMap((action) =>
+      this.studentService.registerStudent(action.student)
+    ),
+    map(() => studentActions.successSetStudentAction())
   ))
 }
