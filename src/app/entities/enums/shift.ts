@@ -1,3 +1,4 @@
 export enum shift {
-  MANHA, TARDE
+  MANHA = "Manha",
+  TARDE = "Tarde"
 }
