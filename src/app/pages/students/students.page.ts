@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
+import { shift } from 'src/app/entities/enums/shift';
 import { student } from 'src/app/entities/student';
 import { StudentService } from 'src/app/services/student/student.service';
 import { IAppState } from 'src/app/store/app.state';
@@ -34,7 +35,7 @@ export class StudentsPage implements OnInit {
           if(this.activeButton === "TODOS") {
             return item
           }
-          return item.shift == this.activeButton;
+          return item.shift == this.activeButton as unknown as shift;
         });
       })
     );
