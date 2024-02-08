@@ -13,6 +13,8 @@ export class ConductorService {
 
   private urlRegister: string = 'http://localhost:8080/conductor'
 
+  private urlGetConductorById: string = 'http://localhost:8080/conductor/'
+
   
   constructor(private http: HttpClient) { }
 
@@ -32,5 +34,16 @@ export class ConductorService {
       })
     }
     return this.http.post<conductor>(this.urlRegister, data, httpOptions)
+  }
+
+  getConductorById(id: string) : Observable<conductor>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token') ?? ''
+      })
+    }
+    const url = `${this.urlGetConductorById}${id}`;
+    return this.http.get<conductor>(url, httpOptions);
   }
 }
