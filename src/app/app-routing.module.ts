@@ -29,6 +29,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register-student/register-student.module').then( m => m.RegisterStudentPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'update-responsible/:id',
+    loadChildren: () => import('./pages/update-responsible/update-responsible.module').then( m => m.UpdateResponsiblePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'update-address/:id',
+    loadChildren: () => import('./pages/update-address/update-address.module').then( m => m.UpdateAddressPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'update-student/:id',
+    loadChildren: () => import('./pages/update-student/update-student.module').then( m => m.UpdateStudentPageModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
