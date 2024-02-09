@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+  <div id="container-buttons-header">
+    <button (click)="return()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-title">
+    <span class="detail-title"></span>
+    <h1>Editar Endereço</h1>
+  </div>
+  <form [formGroup]="updateAddressForm" #formDir="ngForm" id="container-register-student-form">
+    <ion-input formControlName="city" [counter]="true" labelPlacement="floating" label="Cidade" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateAddressForm.controls.city.invalid && formDir.submitted" class="span-erros">O campo "Cidade" é obrigatório</span>
+
+    <ion-input formControlName="district" [counter]="true" labelPlacement="floating" label="Bairro" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateAddressForm.controls.district.invalid  && formDir.submitted" class="span-erros">O campo "Bairro" é obrigatório</span>
+
+    <ion-input formControlName="street" [counter]="true" labelPlacement="floating" label="Rua" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateAddressForm.controls.street.invalid && formDir.submitted" class="span-erros">O campo "Rua" é obrigatório</span>
+
+    <ion-input formControlName="houseNumber" [counter]="true" labelPlacement="floating" label="Número" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateAddressForm.controls.houseNumber.invalid && formDir.submitted" class="span-erros">O campo "Número" é obrigatório</span>
+
+    <ion-input formControlName="referencePoint" [counter]="true" labelPlacement="floating" label="Ponto de Refêrencia" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateAddressForm.controls.referencePoint.invalid && formDir.submitted" class="span-erros">O campo "Ponto de referencia" é obrigatório</span>
+    <div id="container-button-submit-form">
+      <button (click)="submitForm()" id="button-submit-form">Salvar</button>
+    </div>
+  </form>
+
+</ion-content>
