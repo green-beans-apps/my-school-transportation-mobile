@@ -37,7 +37,7 @@ export class RegisterStudentPage implements OnInit {
     transportType: [transportationType.IDA_E_VOLTA, [Validators.required]],
     shift: [shift.MANHA, [Validators.required]],
     monthlyPayment: [0, [Validators.required]],
-    monthlyPaymentExpiration: ['', [Validators.required]],
+    monthlyPaymentExpiration: [0, [Validators.required]],
     responsibleName: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.email, Validators.required]],
     phone: ['', [Validators.required]],
@@ -54,7 +54,6 @@ export class RegisterStudentPage implements OnInit {
   }
 
   submitForm(): void {
-    if(this.studentForm.invalid) return
 
     const student: student = {
       id: uuidv4(),
@@ -64,7 +63,7 @@ export class RegisterStudentPage implements OnInit {
       grade: this.studentForm.value.grade ?? "",
       transportationType: this.studentForm.value.transportType as transportationType ?? transportationType.IDA_E_VOLTA,
       monthlyPayment: this.studentForm.value.monthlyPayment ?? 0,
-      monthlyPaymentExpiration: this.studentForm.value.monthlyPaymentExpiration ?? "",
+      monthlyPaymentExpiration: this.studentForm.value.monthlyPaymentExpiration ?? 0,
       responsible: {
         id: uuidv4(),
         name: this.studentForm.value.responsibleName?? "",
@@ -81,7 +80,9 @@ export class RegisterStudentPage implements OnInit {
       },
       payments: []
     }
-    
+    console.log(student)
+
+    if(this.studentForm.invalid) return
     this.store.dispatch(studentActions.registerStudentAction({student: student}))
     this.returnHome()
   }
