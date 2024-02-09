@@ -63,7 +63,8 @@ export class StudentService {
   registerPayment(payment: payment, studentId: string) {
     const requestData = {
       studentId: studentId,
-      month: payment.paymentMonth
+      month: payment.paymentMonth,
+      paymentId: payment.id
     }
 
     const headers = new HttpHeaders({
