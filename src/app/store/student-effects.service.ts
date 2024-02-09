@@ -35,4 +35,12 @@ export class StudentEffectsService {
     ),
     map(() => studentActions.successSetStudentAction())
   ))
+
+  public registerPaymentEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.registerPaymentAction),
+    switchMap((action) =>
+      this.studentService.registerPayment(action.payment, action.studentId)
+    ),
+    map(()=> studentActions.successSetStudentAction())
+  ))
 }
