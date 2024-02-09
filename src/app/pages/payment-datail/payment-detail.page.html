@@ -8,6 +8,6 @@
     <h1 id="student-name">{{student.name}}</h1>
   </div>
   <div id="container-payments" *ngFor="let payment of paymentsRender">
-    <app-payment-card [month]="payment.paymentMonth" [paymentDate]="payment.paymentDate" [valuePayment]="payment.price"></app-payment-card>
+    <app-payment-card (registerPaymentEmmiter)="registerPayment($event.month)" [month]="payment.paymentMonth" [paymentDate]="payment.paymentDate" [valuePayment]="payment.price"></app-payment-card>
   </div>
 </ion-content>
