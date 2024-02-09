@@ -14,7 +14,7 @@ import { IAppState } from 'src/app/store/app.state';
 })
 export class StudentsPage implements OnInit {
 
-  activeButton: string = "TODOS";
+  activeButton: string = "Todos";
 
   students$: Observable<student[]> = this.store.select('app').pipe(
     map(e => e.students)
@@ -32,7 +32,7 @@ export class StudentsPage implements OnInit {
     this.renderingStudents$ = this.students$.pipe(
       map(originalArray => {
         return originalArray.filter(item => {
-          if(this.activeButton === "TODOS") {
+          if(this.activeButton === "Todos") {
             return item
           }
           return item.shift == this.activeButton as unknown as shift;
