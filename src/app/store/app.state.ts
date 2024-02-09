@@ -40,6 +40,19 @@ export const appReducer = createReducer(
     ...state,
     students: [...state.students, student]
   })),
+  on(studentActions.registerPaymentAction, (state, { payment, studentId }) => ({
+    ...state,
+    students: [...state.students.map((student) => {
+      if (student.id === studentId) {
+        return {
+       ...student,
+          payments: [...student.payments, payment]
+        }
+      } else {
+        return student
+      }
+    })]
+  })),
   
   on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes})),
   on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId)})),
