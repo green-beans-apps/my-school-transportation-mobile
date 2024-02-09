@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {  map } from 'rxjs';
+import {  map, of } from 'rxjs';
 import { IAppState} from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 import { resetActions } from 'src/app/store/resetActions';
+import { ConductorService } from 'src/app/services/conductor/conductor.service';
 
 @Component({
   selector: 'app-settings',
@@ -19,11 +20,20 @@ export class SettingsPage implements OnInit {
 
   constructor(
     private store: Store<{ app: IAppState }>,
+    private conductorService: ConductorService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-  }
+    const conductorId = localStorage.getItem("conductorId");
+
+    if (conductorId !== null) {
+      this.conductorService.getConductorById(conductorId).subscribe(response => {
+        this.conductor$ = of(response);
+      });
+    }
+}
+
 
   exit() {
     localStorage.clear();
