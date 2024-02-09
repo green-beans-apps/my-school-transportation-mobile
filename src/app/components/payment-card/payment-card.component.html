@@ -5,5 +5,5 @@
     <P class="details-payment">Status: <span>{{statusPayment}}</span></P>
     <p *ngIf="statusPayment === 'Pago'" class="details-payment">Data do pagamento: {{paymentDate}}</p>
   </div>
-  <button *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
+  <button (click)="registerPayment(month)" *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
 </div>
