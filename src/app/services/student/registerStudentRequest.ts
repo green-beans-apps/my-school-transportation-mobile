@@ -3,7 +3,7 @@ export interface StudentData {
   school: string;
   grade: string;
   monthlyPayment: number;
-  monthlyPaymentExpiration: string;
+  monthlyPaymentExpiration: number;
   conductorId: string | null;
   shift: string;
   transportationType: string;
