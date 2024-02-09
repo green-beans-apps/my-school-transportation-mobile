@@ -1,8 +1,8 @@
 <ion-content [fullscreen]="true">
   <header>
-    <button [class.active]="activeButton === 'TODOS'" (click)="setActiveButton('TODOS')">Todos</button>
-    <button [class.active]="activeButton === 'MANHA'" (click)="setActiveButton('MANHA')">Manhã</button>
-    <button [class.active]="activeButton === 'TARDE'" (click)="setActiveButton('TARDE')">Tarde</button>
+    <button [class.active]="activeButton === 'Todos'" (click)="setActiveButton('Todos')">Todos</button>
+    <button [class.active]="activeButton === 'Manha'" (click)="setActiveButton('Manha')">Manhã</button>
+    <button [class.active]="activeButton === 'Tarde'" (click)="setActiveButton('Tarde')">Tarde</button>
   </header>
   <div id="container-students-count" *ngIf="(renderingStudents$ | async) as students">
     <h3 id="students-count">{{students.length}} Alunos cadastrados</h3>
