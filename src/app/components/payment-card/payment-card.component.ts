@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { months } from 'src/app/entities/enums/months';
 
 @Component({
@@ -25,10 +25,17 @@ export class PaymentCardComponent  implements OnInit {
   @Input()
   paymentExpiration: string = "02"
 
+
+  @Output() registerPaymentEmmiter = new EventEmitter<{month: months}>();
+
   constructor() { }
 
   ngOnInit() {
     this.setPaymentStatus()
+  }
+
+  registerPayment(month: months) {
+    this.registerPaymentEmmiter.emit({month: month})
   }
 
   setPaymentStatus() {
