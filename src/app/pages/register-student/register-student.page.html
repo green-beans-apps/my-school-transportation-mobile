@@ -52,7 +52,7 @@
     </ion-input>
     <span *ngIf="studentForm.controls.monthlyPayment.invalid && formDir.submitted" class="span-erros">O campo "Mensalidade" é obrigatório</span>
 
-    <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento" maxlength="40" type="text"
+    <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento" maxlength="2" type="text"
       class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
     </ion-input>
