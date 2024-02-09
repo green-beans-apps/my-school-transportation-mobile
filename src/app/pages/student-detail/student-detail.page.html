@@ -3,7 +3,7 @@
     <button (click)="returnHome()" class="buttons-header">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </button>
-    <button class="buttons-header">
+    <button (click)="redirectToUpdateStudent()" class="buttons-header">
       <ion-icon name="create-outline"></ion-icon>
     </button>
   </div>
@@ -48,20 +48,17 @@
       <h4 class="title-atributte">Vencimento da mensalidade:</h4>
       <h4 class="result-title-atribute">{{student.monthlyPaymentExpiration}}</h4>
     </div>
-    <div class="atributte">
-      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
-      <h4 class="title-atributte">Endereço:</h4>
-      <h4 class="result-title-atribute">{{student.address.street}}, {{student.address.houseNumber}} -
-        {{student.address.district}}</h4>
+
+    <div class="container-subtitle">
+      <h3>Responsável</h3>
+      <button (click)="redirectToUpdateResponsible()" class="buttons-subtitle">
+        <ion-icon name="create-outline"></ion-icon>
+      </button>
     </div>
-    <div class="atributte">
-      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
-      <h4 class="title-atributte">Referência:</h4>
-      <h4 class="result-title-atribute">{{student.address.referencePoint}}</h4>
-    </div>
+
     <div class="atributte">
       <ion-icon class="icon-atributte" name="people-outline"></ion-icon>
-      <h4 class="title-atributte">Responsável:</h4>
+      <h4 class="title-atributte"> Nome do responsável:</h4>
       <h4 class="result-title-atribute">{{student.responsible.name}}</h4>
     </div>
     <div class="atributte">
@@ -73,6 +70,25 @@
       <ion-icon class="icon-atributte" name="call-outline"></ion-icon>
       <h4 class="title-atributte">Celular:</h4>
       <h4 class="result-title-atribute">{{student.responsible.phone}}</h4>
+    </div>
+
+    <div class="container-subtitle">
+      <h3>Endereço</h3>
+      <button (click)="redirectToUpdateAddress()" class="buttons-subtitle">
+        <ion-icon name="create-outline"></ion-icon>
+      </button>
+    </div>
+
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
+      <h4 class="title-atributte">Endereço:</h4>
+      <h4 class="result-title-atribute">{{student.address.street}}, {{student.address.houseNumber}} -
+        {{student.address.district}}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="location-outline"></ion-icon>
+      <h4 class="title-atributte">Referência:</h4>
+      <h4 class="result-title-atribute">{{student.address.referencePoint}}</h4>
     </div>
   </div>
 </ion-content>
