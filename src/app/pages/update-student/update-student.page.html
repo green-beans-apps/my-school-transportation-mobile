@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true">
+  <div id="container-buttons-header">
+    <button (click)="return()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-title">
+    <span class="detail-title"></span>
+    <h1>Editar Aluno</h1>
+  </div>
+  <form [formGroup]="updateStudentForm" #formDir="ngForm" id="container-register-student-form">
+    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" minlength="4" label="Nome" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateStudentForm.controls.name.invalid && formDir.submitted" class="span-erros">Digite um nome de aluno válido</span>
+
+    <ion-input formControlName="school" [counter]="true" labelPlacement="floating" label="Escola" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="business-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateStudentForm.controls.school.invalid && formDir.submitted" class="span-erros">O campo "Escola" é obrigatório</span>
+
+    <ion-input formControlName="grade" [counter]="true" labelPlacement="floating" label="Série" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="school-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateStudentForm.controls.grade.invalid && formDir.submitted" class="span-erros">O campo "Série" é obrigatório</span>
+
+    <div class="container-select">
+      <ion-select formControlName="transportType" label-placement="stacked" label-placement="floating" label="Tipo de transporte" interface="popover">
+        <ion-icon slot="start" name="bus-outline" aria-hidden="true"></ion-icon>
+        <ion-select-option [value]="transportationTypes.IDA_E_VOLTA">Ida e volta</ion-select-option>
+        <ion-select-option [value]="transportationTypes.IDA">Ida</ion-select-option>
+        <ion-select-option [value]="transportationTypes.VOLTA">Volta</ion-select-option>
+      </ion-select>
+      <span *ngIf="updateStudentForm.controls.transportType.invalid && formDir.submitted" class="span-erros">O campo "Tipo de transporte" é obrigatório</span>
+    </div>
+
+    <div class="container-select">
+      <ion-select formControlName="shift" label-placement="stacked" label-placement="floating" label="Turno" interface="popover">
+        <ion-icon slot="start" name="alarm-outline" aria-hidden="true"></ion-icon>
+        <ion-select-option [value]="shiftTypes.MANHA">Manhã</ion-select-option>
+        <ion-select-option [value]="shiftTypes.TARDE">tarde</ion-select-option>
+      </ion-select>
+      <span *ngIf="updateStudentForm.controls.shift.invalid && formDir.submitted" class="span-erros">O campo "Turno" é obrigatório</span>
+    </div>
+
+    <ion-input formControlName="monthlyPayment" id="input-monthly-payment" [counter]="true" labelPlacement="floating" label="Mensalidade" maxlength="40"
+      type="text" class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="cash-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateStudentForm.controls.monthlyPayment.invalid && formDir.submitted" class="span-erros">O campo "Mensalidade" é obrigatório</span>
+
+    <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento" maxlength="2" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateStudentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">O campo "Data de vencimento" é
+      obrigatório</span>
+
+    <div id="container-button-submit-form">
+      <button (click)="submitForm()" id="button-submit-form">Cadastrar</button>
+    </div>
+  </form>
+
+</ion-content>
