@@ -31,14 +31,14 @@ export class RegisterStudentPage implements OnInit {
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected studentForm = this.formBuilderService.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.minLength(4)]],
     school: ['', [Validators.required]],
     grade: ['', [Validators.required]],
     transportType: [transportationType.IDA_E_VOLTA, [Validators.required]],
     shift: [shift.MANHA, [Validators.required]],
     monthlyPayment: [0, [Validators.required]],
     monthlyPaymentExpiration: ['', [Validators.required]],
-    responsibleName: ['', [Validators.required]],
+    responsibleName: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', [Validators.email, Validators.required]],
     phone: ['', [Validators.required]],
     city: ['', [Validators.required]],
