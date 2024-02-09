@@ -41,4 +41,16 @@ export class StudentDetailPage implements OnInit {
     this.router.navigate(['/payment-detail', this.studentId]);
   }
 
+
+  redirectToUpdateResponsible() {
+    this.router.navigate(['/update-responsible', this.studentId]);
+  }
+
+  redirectToUpdateAddress() {
+    this.router.navigate(['/update-address', this.studentId]);
+  }
+
+  redirectToUpdateStudent() {
+    this.router.navigate(['/update-student', this.studentId]);
+  }
 }
