@@ -12,7 +12,7 @@ export interface student {
   grade: string;
   transportationType: transportationType;
   monthlyPayment: number;
-  monthlyPaymentExpiration: string;
+  monthlyPaymentExpiration: number;
   responsible: responsible;
   address: address;
   payments: payment[];
