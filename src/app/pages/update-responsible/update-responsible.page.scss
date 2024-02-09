@@ -1,0 +1,114 @@
+ion-content {
+  --background: #FFF;
+  --padding-bottom: 25px
+}
+
+.buttons-header {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #d8d8d8;
+  background-color: transparent;
+  margin-top: 20px;
+}
+
+ion-icon {
+  color: #262626;
+  font-size: 20px;
+}
+
+#container-buttons-header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+#container-title {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+h1 {
+  color: #262626;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-title {
+  width: 4px;
+  height: 30px;
+  background-color: #F6AD09;
+  margin-left: 20px;
+}
+
+ion-input {
+  --highlight-color-focused: #F6AD09;
+  --highlight-color-valid: #F6AD09;
+}
+
+ion-select {
+  --highlight-color-focused: #F6AD09;
+  --highlight-color-valid: #F6AD09;
+  color: #262626;
+  --background: #FFF;
+  --border-color: #262626;
+  border-bottom: 1px solid #262626;
+}
+
+
+.ion-input-color {
+  color: #262626
+}
+
+.ion-icon-color {
+  color: #262626
+}
+
+#container-register-student-form {
+  width: 100%;
+  padding: 20px;
+  padding-top: 0;
+}
+
+
+#container-button-submit-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-submit-form {
+  width: 50%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  background: #F6AD09;
+  margin-top: 15px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#container-form-erros {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.span-erros {
+  color: rgb(255, 127, 127);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+}

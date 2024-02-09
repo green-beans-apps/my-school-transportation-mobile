@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+  <div id="container-buttons-header">
+    <button (click)="return()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-title">
+    <span class="detail-title"></span>
+    <h1>Editar Responsável</h1>
+  </div>
+  <form [formGroup]="updateResponsibleForm" #formDir="ngForm" id="container-register-student-form">
+    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" label="Nome do Responsável"
+      maxlength="40" type="text" class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="people-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateResponsibleForm.controls.name.invalid && formDir.submitted" class="span-erros">O campo "Nome do
+      Responsável" é obrigatório</span>
+
+    <ion-input formControlName="email" [counter]="true" labelPlacement="floating" label="Email" maxlength="40"
+      type="text" class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateResponsibleForm.controls.email.invalid && formDir.submitted" class="span-erros">Digite um Email
+      válido</span>
+
+    <ion-input formControlName="phone" [counter]="true" labelPlacement="floating" label="Telefone" maxlength="40"
+      type="text" class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateResponsibleForm.controls.phone.invalid && formDir.submitted" class="span-erros">Digite um
+      Telefone
+      válido</span>
+      <div id="container-button-submit-form">
+        <button (click)="submitForm()" id="button-submit-form">Salvar</button>
+      </div>
+  </form>
+</ion-content>
