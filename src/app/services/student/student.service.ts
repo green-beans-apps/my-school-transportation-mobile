@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { student } from 'src/app/entities/student';
 import { IRegisterStudentRequest } from './registerStudentRequest';
+import { payment } from 'src/app/entities/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,19 @@ export class StudentService {
 
     const urlCreateStudent = `${this.baseUrl}student`
     return this.http.post<student>(urlCreateStudent, requestData, {headers: headers})
+  }
+
+  registerPayment(payment: payment, studentId: string) {
+    const requestData = {
+      studentId: studentId,
+      month: payment.paymentMonth
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': window.localStorage.getItem('token') ?? ''
+    })
+
+    const urlRegisterPayment = `${this.baseUrl}payment`
+    return this.http.post<student>(urlRegisterPayment, requestData, {headers: headers})
   }
 }
