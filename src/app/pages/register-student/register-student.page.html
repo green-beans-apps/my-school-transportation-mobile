@@ -9,7 +9,7 @@
     <h1>Cadastrar Aluno</h1>
   </div>
   <form [formGroup]="studentForm" #formDir="ngForm" id="container-register-student-form">
-    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40" type="text"
+    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" minlength="4" label="Nome" maxlength="40" type="text"
       class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="person-outline" aria-hidden="true"></ion-icon>
     </ion-input>
