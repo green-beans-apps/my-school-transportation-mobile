@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { student } from 'src/app/entities/student';
 import { IRegisterStudentRequest } from './registerStudentRequest';
 import { payment } from 'src/app/entities/payment';
+import { updateResponsibleRequest } from './updateResponsibleRequest';
+import { updateAddressRequest } from './updateAddressRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +75,41 @@ export class StudentService {
 
     const urlRegisterPayment = `${this.baseUrl}payment`
     return this.http.post<student>(urlRegisterPayment, requestData, {headers: headers})
+  }
+
+  updateResponsible(name: string, email: string, phone: string, studentId: string) {
+    const requestData: updateResponsibleRequest = {
+      name: name,
+      email: email,
+      phone: phone,
+      studentId: studentId
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': window.localStorage.getItem('token') ?? ''
+    })
+
+    const urlUpdateResponsible = `${this.baseUrl}student/responsible`
+    return this.http.put<student>(urlUpdateResponsible, requestData, {headers: headers})
+
+  }
+
+  updateAddress(city: string, district: string, street: string, houseNumber: number, referencePoint: string, studentId: string) {
+    const requestData: updateAddressRequest = {
+      city: city,
+      district: district,
+      street: street,
+      referencePoint: referencePoint,
+      houseNumber: houseNumber,
+      studentId: studentId
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': window.localStorage.getItem('token') ?? ''
+    })
+
+    const urlUpdateResponsible = `${this.baseUrl}student/address`
+    return this.http.put<student>(urlUpdateResponsible, requestData, {headers: headers})
+
   }
 }
