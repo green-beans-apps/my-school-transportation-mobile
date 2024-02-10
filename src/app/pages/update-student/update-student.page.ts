@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { shift } from 'src/app/entities/enums/shift';
 import { transportationType } from 'src/app/entities/enums/transportationType';
 import { IAppState } from 'src/app/store/app.state';
+import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
   selector: 'app-update-student',
@@ -47,8 +48,8 @@ export class UpdateStudentPage implements OnInit {
           name: student.name,
           school: student.school,
           grade: student.grade,
-          transportType: this.convertStringToTransportationType(student.transportationType),
-          shift: this.convertStringToShift(student.shift),
+          transportType: student.transportationType,
+          shift: student.shift,
           monthlyPayment: student.monthlyPayment,
           monthlyPaymentExpiration: student.monthlyPaymentExpiration,
         });
@@ -62,27 +63,20 @@ export class UpdateStudentPage implements OnInit {
   }
 
   submitForm() {
+    if (this.updateStudentForm.invalid) return
 
-  }
-
-  convertStringToShift(value: string | shift): shift {
-    if(value === "TARDE") {
-      return shift.TARDE
-    }
-    return shift.MANHA
-  }
-
-  convertStringToTransportationType(value: string | transportationType): transportationType {
-    if(value === "IDA_E_VOLTA") {
-      return transportationType.IDA_E_VOLTA
-    }
-    if(value === "IDA") {
-      return transportationType.IDA
-    }
-    if(value === "VOLTA") {
-      return transportationType.VOLTA
-    }
-    return transportationType.IDA_E_VOLTA
+    this.store.dispatch(studentActions.updateStudentAction({
+      id: this.studentId,
+      name: this.updateStudentForm.value.name ?? "",
+      school: this.updateStudentForm.value.school ?? "",
+      grade: this.updateStudentForm.value.grade ?? "",
+      transportationType: this.updateStudentForm.value.transportType ?? transportationType.IDA_E_VOLTA,
+      shift: this.updateStudentForm.value.shift ?? shift.MANHA,
+      monthlyPayment: this.updateStudentForm.value.monthlyPayment ?? 0,
+      monthlyPaymentExpiration: this.updateStudentForm.value.monthlyPaymentExpiration ?? 0,
+    }))
+    
+    this.return()
   }
 
 }
