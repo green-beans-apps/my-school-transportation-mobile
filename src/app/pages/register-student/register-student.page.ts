@@ -54,6 +54,7 @@ export class RegisterStudentPage implements OnInit {
   }
 
   submitForm(): void {
+    if(this.studentForm.invalid) return
 
     const student: student = {
       id: uuidv4(),
@@ -80,9 +81,7 @@ export class RegisterStudentPage implements OnInit {
       },
       payments: []
     }
-    console.log(student)
-
-    if(this.studentForm.invalid) return
+    
     this.store.dispatch(studentActions.registerStudentAction({student: student}))
     this.returnHome()
   }
