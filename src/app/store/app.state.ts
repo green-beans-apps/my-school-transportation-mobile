@@ -25,16 +25,16 @@ export const appInitialState: IAppState = {
 
 
 export const loadNotesAction = createAction("[App] load notes")
-export const setNotesAction = createAction("[App] set notes", props<{notes: note[]}>())
+export const setNotesAction = createAction("[App] set notes", props<{ notes: note[] }>())
 export const successSetNotesAction = createAction("[App] [notes] success set notes")
-export const deleteNoteAction = createAction("[APP] delete note", props<{noteId: string}>())
-export const updateNoteAction = createAction("[APP] update note", props<{noteId: string, title: string, description: string}>())
-export const saveNoteAction = createAction("[APP] save note", props<{ id: string, title: string, description: string}>())
+export const deleteNoteAction = createAction("[APP] delete note", props<{ noteId: string }>())
+export const updateNoteAction = createAction("[APP] update note", props<{ noteId: string, title: string, description: string }>())
+export const saveNoteAction = createAction("[APP] save note", props<{ id: string, title: string, description: string }>())
 
 export const appReducer = createReducer(
   appInitialState,
-  on(studentActions.setStudentsAction, (state, { students }) => ({ ...state, students: students})),
-  on(conductortActions.setConductorAction, (state, { conductor }) => ({ ...state, conductor: conductor})),
+  on(studentActions.setStudentsAction, (state, { students }) => ({ ...state, students: students })),
+  on(conductortActions.setConductorAction, (state, { conductor }) => ({ ...state, conductor: conductor })),
   on(resetActions.reset, () => appInitialState),
   on(studentActions.registerStudentAction, (state, { student }) => ({
     ...state,
@@ -45,7 +45,7 @@ export const appReducer = createReducer(
     students: [...state.students.map((student) => {
       if (student.id === studentId) {
         return {
-       ...student,
+          ...student,
           payments: [...student.payments, payment]
         }
       } else {
@@ -53,9 +53,66 @@ export const appReducer = createReducer(
       }
     })]
   })),
-  
-  on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes})),
-  on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId)})),
+  on(studentActions.updateResponsibleAction, (state, { name, email, phone, studentId }) => ({
+    ...state,
+    students: [...state.students.map((student) => {
+      if (student.id === studentId) {
+        return {
+          ...student,
+          responsible: {
+            ...student.responsible,
+            name: name,
+            email: email,
+            phone: phone,
+          }
+        }
+      } else {
+        return student
+      }
+    })]
+  })),
+  on(studentActions.updateAddressAction, (state, { city, district, street, houseNumber, referencePoint, studentId }) => ({
+    ...state,
+    students: [...state.students.map((student) => {
+      if (student.id === studentId) {
+        return {
+          ...student,
+           address: {
+            ...student.address,
+             city: city,
+             district: district,
+             street: street,
+             houseNumber: houseNumber,
+             referencePoint: referencePoint
+           }
+        }
+      } else {
+        return student
+      }
+    })]
+  })),
+  on(studentActions.updateStudentAction, (state, { name, school, shift, transportationType, grade, monthlyPayment, monthlyPaymentExpiration, id }) => ({
+    ...state,
+    students: [...state.students.map((student) => {
+      if (student.id === id) {
+        return {
+          ...student,
+          name: name,
+          school: school,
+          shift: shift,
+          transportationType: transportationType,
+          grade: grade,
+          monthlyPayment: monthlyPayment,
+          monthlyPaymentExpiration: monthlyPaymentExpiration
+        }
+      } else {
+        return student
+      }
+    })]
+  })),
+
+  on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes })),
+  on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId) })),
   on(updateNoteAction, (state, { noteId, title, description }) => ({
     ...state,
     notes: state.notes.map(note => {
