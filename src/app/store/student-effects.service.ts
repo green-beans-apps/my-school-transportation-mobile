@@ -52,4 +52,20 @@ export class StudentEffectsService {
     ),
     map(()=> studentActions.successSetStudentAction())
   ))
+
+  public updateResponsibleEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.updateResponsibleAction),
+    switchMap((action) =>
+      this.studentService.updateResponsible(action.name, action.email, action.phone, action.studentId)
+    ),
+    map(() => studentActions.successSetStudentAction())
+  ))
+
+  public updateAddressEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.updateAddressAction),
+    switchMap((action) =>
+      this.studentService.updateAddress(action.city, action.district, action.street, action.houseNumber, action.referencePoint, action.studentId)
+    ),
+    map(() => studentActions.successSetStudentAction())
+  ))
 }
