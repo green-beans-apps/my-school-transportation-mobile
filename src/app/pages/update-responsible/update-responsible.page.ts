@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { IAppState } from 'src/app/store/app.state';
+import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
   selector: 'app-update-responsible',
@@ -46,6 +47,15 @@ export class UpdateResponsiblePage implements OnInit {
   }
 
   submitForm() {
-    
+    if(this.updateResponsibleForm.invalid) return
+
+    this.store.dispatch(studentActions.updateResponsibleAction({
+      name: this.updateResponsibleForm.value.name ?? "",
+      email: this.updateResponsibleForm.value.email ?? "",
+      phone: this.updateResponsibleForm.value.phone ?? "",
+      studentId: this.studentId
+    }))
+
+    this.return()
   }
 }
