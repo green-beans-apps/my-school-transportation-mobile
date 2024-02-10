@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { IAppState } from 'src/app/store/app.state';
+import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
   selector: 'app-update-address',
@@ -38,7 +39,7 @@ export class UpdateAddressPage implements OnInit {
         district: student?.address.district ?? "",
         street: student?.address.street ?? "",
         houseNumber: student?.address.houseNumber ?? 0,
-        referencePoint: student?.address.referencePoint?? ""
+        referencePoint: student?.address.referencePoint ?? ""
       })
     })
   }
@@ -49,7 +50,18 @@ export class UpdateAddressPage implements OnInit {
   }
 
   submitForm() {
-    
+    if (this.updateAddressForm.invalid) return
+
+    this.store.dispatch(studentActions.updateAddressAction({
+      city: this.updateAddressForm.value.city ?? "",
+      district: this.updateAddressForm.value.district ?? "",
+      street: this.updateAddressForm.value.street ?? "",
+      houseNumber: this.updateAddressForm.value.houseNumber ?? 0,
+      referencePoint: this.updateAddressForm.value.referencePoint ?? "",
+      studentId: this.studentId
+    }))
+
+    this.return()
   }
 
 }
