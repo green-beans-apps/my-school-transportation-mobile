@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.state';
 import { setConductorAction } from 'src/app/store/conductorAdtions';
 import { conductor } from 'src/app/entities/conductor';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +18,19 @@ import { conductor } from 'src/app/entities/conductor';
 })
 export class LoginPage implements OnInit {
 
-  formLogin = {
-    login: '',
-    password: ''
-  }
-
-  requiredInput = false
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly maskCpf: MaskitoOptions = {
+    mask: [/\d/,/\d/,/\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  };
 
   invalidCredentials = false
+
+  private formBuilderService = inject(NonNullableFormBuilder)
+
+  protected loginForm = this.formBuilderService.group({
+    login: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  })
 
   constructor(private store: Store<{app: IAppState}>, private conductorService: ConductorService, private router: Router) { }
 
@@ -31,36 +38,24 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.invalidCredentials = false;
-    this.requiredInput = false;
-    if (
-      this.formLogin.login === '' ||
-      this.formLogin.password === ''
-    ) {
-      this.requiredInput = true;
-      return;
+    if(this.loginForm.invalid) return
+
+    const loginRequest = {
+      login: this.loginForm.value.login?.replace(/[.-]/g, '') ?? "",
+      password: this.loginForm.value.password ?? ""
     }
 
-    //remove os caracteres especiais do cpf
-    this.formLogin.login = this.formLogin.login.replace(/[.-]/g, '')
-
-    this.conductorService.login(this.formLogin).subscribe(
+    this.conductorService.login(loginRequest).subscribe(
       (result: loginResponse) => {
         window.localStorage.setItem('token', `Bearer ${result.token}`);
         window.localStorage.setItem('conductorId', result.conductor.id);
-        this.formLogin = {
-          login: '',
-          password: ''
-        }
+        this.loginForm.reset()
         this.store.dispatch(setConductorAction({conductor: result.conductor}))
         this.router.navigate(['']);
       },
       (error: any) => {
         this.invalidCredentials = true;
-        this.formLogin = {
-          login: '',
-          password: ''
-        }
+        this.loginForm.reset()
       }
     );
   }
