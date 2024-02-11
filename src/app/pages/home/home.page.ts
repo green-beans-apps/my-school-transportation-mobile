@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { note } from 'src/app/entities/note';
-import { NoteService } from 'src/app/services/note/note.service';
-import {IAppState, deleteNoteAction, loadNotesAction, saveNoteAction, updateNoteAction} from 'src/app/store/app.state';
+import { IAppState } from 'src/app/store/app.state';
 import { studentActions } from 'src/app/store/studentActions';
 
 @Component({
