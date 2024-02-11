@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MaskitoElementPredicate, MaskitoOptions, maskitoTransform } from '@maskito/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { IAppState } from 'src/app/store/app.state';
 import { studentActions } from 'src/app/store/studentActions';
+
 
 @Component({
   selector: 'app-update-responsible',
@@ -12,6 +14,12 @@ import { studentActions } from 'src/app/store/studentActions';
   styleUrls: ['./update-responsible.page.scss'],
 })
 export class UpdateResponsiblePage implements OnInit {
+
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+
+  readonly maskPhone: MaskitoOptions = {
+    mask: ['(', /\d/,/\d/, ')' , ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  };
 
   student$ = this.store.select('app').pipe(
     map(e => e.students),
@@ -23,9 +31,9 @@ export class UpdateResponsiblePage implements OnInit {
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected updateResponsibleForm = this.formBuilderService.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
+    name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
     email: ['', [Validators.email, Validators.required]],
-    phone: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
   })
 
   constructor(private activatedRouter: ActivatedRoute, private router: Router, private store: Store<{ app: IAppState }>,) { }
@@ -36,7 +44,7 @@ export class UpdateResponsiblePage implements OnInit {
       this.updateResponsibleForm.setValue({
         name:student?.responsible.name ?? "",
         email:student?.responsible.email ?? "",
-        phone:student?.responsible.phone ?? ""
+        phone: this.applyPhoneMask(student?.responsible.phone ?? "")
       })
     })
   }
@@ -57,5 +65,13 @@ export class UpdateResponsiblePage implements OnInit {
     }))
 
     this.return()
+  }
+
+  private applyPhoneMask(phone: string | undefined): string {
+    if (!phone) {
+      return "";
+    }
+    const maskedPhone = maskitoTransform( phone, this.maskPhone);
+    return maskedPhone;
   }
 }
