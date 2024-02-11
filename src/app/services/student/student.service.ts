@@ -6,6 +6,8 @@ import { IRegisterStudentRequest } from './registerStudentRequest';
 import { payment } from 'src/app/entities/payment';
 import { updateResponsibleRequest } from './updateResponsibleRequest';
 import { updateAddressRequest } from './updateAddressRequest';
+import { updateStudentRequest } from './updateStudentRequest';
+import { transportationType } from 'src/app/entities/enums/transportationType';
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +112,27 @@ export class StudentService {
 
     const urlUpdateResponsible = `${this.baseUrl}student/address`
     return this.http.put<student>(urlUpdateResponsible, requestData, {headers: headers})
+
+  }
+
+  updateStudent(name: string, school: string, grade: string, transportationType: transportationType, shift: string, monthlyPayment: number, monthlyPaymentExpiration: number, studentId: string) {
+    const requestData: updateStudentRequest = {
+      name: name,
+      school: school,
+      grade: grade,
+      shift: shift,
+      transportationType: transportationType,
+      monthlyPayment: monthlyPayment,
+      monthlyPaymentExpiration: monthlyPaymentExpiration,
+      studentId: studentId
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': window.localStorage.getItem('token') ?? ''
+    })
+
+    const urlUpdateStudent = `${this.baseUrl}student`
+    return this.http.put<student>(urlUpdateStudent, requestData, {headers: headers})
 
   }
 }
