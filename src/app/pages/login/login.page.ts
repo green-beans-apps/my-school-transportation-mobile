@@ -1,15 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
-import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
 import { ConductorService } from 'src/app/services/conductor/conductor.service';
 import { loginResponse } from 'src/app/services/conductor/response/loginResponse';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.state';
 import { setConductorAction } from 'src/app/store/conductorAdtions';
-import { conductor } from 'src/app/entities/conductor';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
+import { maskitoTransform, MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +14,6 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
-  readonly maskCpf: MaskitoOptions = {
-    mask: [/\d/,/\d/,/\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
-  };
 
   invalidCredentials = false
 
