@@ -8,6 +8,8 @@ import { loginResponse } from './response/loginResponse';
   providedIn: 'root'
 })
 export class ConductorService {
+  
+  private baseUrl = 'http://localhost:8080/'
 
   private urlLogin: string = 'http://localhost:8080/auth/login'
 
@@ -40,10 +42,29 @@ export class ConductorService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': window.localStorage.getItem('token') ?? ''
+        'Authorization': window.localStorage.getItem('token') ?? ''
       })
     }
     const url = `${this.urlGetConductorById}${id}`;
     return this.http.get<conductor>(url, httpOptions);
+  }
+
+  updateConductor(data: {name: string, email: string, id: string}) {
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token') ?? ''
+      })
+    }
+
+    const requestBody = {
+      name: data.name,
+      email: data.email,
+      conductorId: data.id
+    }
+
+    const updateUrl = `${this.baseUrl}conductor`;
+    return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
   }
 }
