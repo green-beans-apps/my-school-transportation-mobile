@@ -68,4 +68,12 @@ export class StudentEffectsService {
     ),
     map(() => studentActions.successSetStudentAction())
   ))
+
+  public updateStudentEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.updateStudentAction),
+    switchMap((action) =>
+      this.studentService.updateStudent(action.name, action.school, action.grade, action.transportationType, action.shift, action.monthlyPayment, action.monthlyPaymentExpiration, action.id)
+    ),
+    map(() => studentActions.successSetStudentAction())
+  ))
 }
