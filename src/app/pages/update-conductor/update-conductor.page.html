@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <div id="container-buttons-header">
+    <button (click)="return()" class="buttons-header">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+  </div>
+  <div id="container-title">
+    <span class="detail-title"></span>
+    <h1>Editar Condutor</h1>
+  </div>
+  <form [formGroup]="updateConductorForm" #formDir="ngForm" id="container-register-student-form">
+    <ion-input formControlName="name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateConductorForm.controls.name.invalid && formDir.submitted" class="span-erros">Insira um nome válido.</span>
+
+    <ion-input formControlName="email" [counter]="true" labelPlacement="floating" label="Email" maxlength="40" type="text"
+      class="ion-input-color">
+      <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+    <span *ngIf="updateConductorForm.controls.email.invalid  && formDir.submitted" class="span-erros">Insira um Email válido.</span>
+
+    <div id="container-button-submit-form">
+      <button (click)="submitForm()" id="button-submit-form">Salvar</button>
+    </div>
+  </form>
+
+</ion-content>
