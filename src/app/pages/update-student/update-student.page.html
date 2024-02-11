@@ -56,11 +56,10 @@
       class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="updateStudentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">O campo "Data de vencimento" é
-      obrigatório</span>
+    <span *ngIf="updateStudentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">A data de vencimento deve estar entre o 1° e o 28° dia do mês.</span>
 
     <div id="container-button-submit-form">
-      <button (click)="submitForm()" id="button-submit-form">Cadastrar</button>
+      <button (click)="submitForm()" id="button-submit-form">Salvar</button>
     </div>
   </form>
 
