@@ -7,6 +7,8 @@ import { StudentService } from '../services/student/student.service';
 import { catchError, exhaustMap, map, of, switchMap, tap } from 'rxjs';
 import { convertStringToShift } from '../utils/convertStringToShift';
 import { convertStringToTransportationType } from '../utils/convertStringToTransportationType';
+import { conductortActions } from './conductorActions';
+import { ConductorService } from '../services/conductor/conductor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class StudentEffectsService {
   constructor(
     private actions$: Actions,
     private studentService: StudentService,
-    private store: Store<{ app: IAppState }>
+    private store: Store<{ app: IAppState }>,
+    private conductorService: ConductorService
   ) { }
 
   loadStudentsEffect$ = createEffect(() => this.actions$.pipe(
@@ -50,7 +53,7 @@ export class StudentEffectsService {
     switchMap((action) =>
       this.studentService.registerPayment(action.payment, action.studentId)
     ),
-    map(()=> studentActions.successSetStudentAction())
+    map(() => studentActions.successSetStudentAction())
   ))
 
   public updateResponsibleEffect$ = createEffect(() => this.actions$.pipe(
@@ -75,5 +78,31 @@ export class StudentEffectsService {
       this.studentService.updateStudent(action.name, action.school, action.grade, action.transportationType, action.shift, action.monthlyPayment, action.monthlyPaymentExpiration, action.id)
     ),
     map(() => studentActions.successSetStudentAction())
+  ))
+
+  public loadConductorEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(conductortActions.loadConductorAction),
+    switchMap(() => {
+      const conductorId = localStorage.getItem("conductorId")
+      return this.conductorService.getConductorById(conductorId ?? "")
+    }),
+    tap((conductor) => {
+      this.store.dispatch(conductortActions.setConductorAction({
+        conductor: conductor
+      }))
+    }),
+    map(() => studentActions.successSetStudentAction())
+  ))
+
+  public updateConductorEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(conductortActions.updateConductorAction),
+    switchMap((action) => 
+      this.conductorService.updateConductor({
+        name: action.name,
+        email: action.email,
+        id: action.id
+      })
+    ),
+    map(() => conductortActions.successConductorAction())
   ))
 }
