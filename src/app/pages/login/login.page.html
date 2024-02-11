@@ -1,20 +1,20 @@
 <div id="main">
   <div id="container">
-    <div id="form">
+    <form [formGroup]="loginForm" #formDir="ngForm" id="form">
       <div id="title-container">
         <div id="aesthetic-detail-of-the-title"></div>
         <h2 id="title-login">Login</h2>
       </div>
-      <ion-input [(ngModel)]="formLogin.login" [counter]="true" labelPlacement="floating" label="CPF" maxlength="14"
-      inputmode="numeric" class="ion-input-color" inputmode="numeric">
+      <ion-input formControlName="login" [counter]="true" labelPlacement="floating" label="CPF" maxlength="14"
+      inputmode="numeric" class="ion-input-color" inputmode="numeric" [maskito]="maskCpf" [maskitoElement]="maskPredicate">
       <ion-icon class="ion-icon-color" slot="start" name="id-card-sharp" aria-hidden="true"></ion-icon>
       </ion-input>
       <span id="container-input-password">
-        <ion-input [(ngModel)]="formLogin.password"[counter]="true" labelPlacement="floating" label="Senha"
+        <ion-input formControlName="password" [counter]="true" labelPlacement="floating" label="Senha"
         maxlength="40" type="password" class="ion-input-color">
         <ion-icon class="ion-icon-color" slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
         </ion-input>
-        <span class="invalid-credentials-span" *ngIf="requiredInput">
+        <span class="invalid-credentials-span" *ngIf="loginForm.invalid && formDir.submitted">
           Preenchimento obrigatório.
         </span>
         <span class="invalid-credentials-span" *ngIf="invalidCredentials">
@@ -29,6 +29,6 @@
         <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page"
           id="link-redirect-login">Cadastre-se</a>
       </span>
-    </div>
+    </form>
   </div>
 </div>
