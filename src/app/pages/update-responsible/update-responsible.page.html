@@ -24,7 +24,7 @@
       válido</span>
 
     <ion-input formControlName="phone" [counter]="true" labelPlacement="floating" label="Telefone" maxlength="40"
-      type="text" class="ion-input-color">
+      type="text" class="ion-input-color" [maskito]="maskPhone" [maskitoElement]="maskPredicate">
       <ion-icon class="ion-icon-color" slot="start" name="call-outline" aria-hidden="true"></ion-icon>
     </ion-input>
     <span *ngIf="updateResponsibleForm.controls.phone.invalid && formDir.submitted" class="span-erros">Digite um
