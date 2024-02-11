@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { ConductorService } from 'src/app/services/conductor/conductor.service';
 import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { cpfValidator } from 'src/app/validators/cpfValidator';
 
 @Component({
   selector: 'app-register',
@@ -11,71 +14,41 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class RegisterPage implements OnInit {
 
-  formRegister = {
-    name: '',
-    email: '',
-    cpf: '',
-    password: ''
-  }
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly maskCpf: MaskitoOptions = {
+    mask: [/\d/,/\d/,/\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  };
 
-  invalidEmailSpanError = false;
-  requiredInputsError = false;
-  invalidPasswordSpanError = false;
-  invalidCPFSpanError = false;
+  private formBuilderService = inject(NonNullableFormBuilder)
+
+  protected registerForm = this.formBuilderService.group({
+    name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
+    email: ['', [Validators.required, Validators.email]],
+    cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/), cpfValidator]],
+    password: ['', [Validators.required, Validators.minLength(7)]]
+  })
 
   constructor(private conductorService: ConductorService, private router: Router, private validateCpf: CpfValidationService) { }
 
   ngOnInit() {
-  }
-
-  resetForm() {
-    this.formRegister = {
-      name: '',
-      email: '',
-      cpf: '',
-      password: ''
-    }
+    this.registerForm.reset()
   }
 
   register() {
-    // validacoes
-    this.invalidEmailSpanError = false;
-    this.requiredInputsError = false;
-    this.invalidPasswordSpanError = false;
-    this.invalidCPFSpanError = false;
-    if (
-      this.formRegister.name === '' ||
-      this.formRegister.email === '' ||
-      this.formRegister.password === '' ||
-      this.formRegister.cpf === ''
-    ) {
-      this.requiredInputsError = true;
-      return;
-    }
-    if (!this.validateCpf.execute(this.formRegister.cpf)) {
-      this.invalidCPFSpanError = true;
-      return;
-    }
-    const expressionEmail: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    const resultRegexEmail: boolean = expressionEmail.test(this.formRegister.email);
-    if(!resultRegexEmail) {
-      this.invalidEmailSpanError = true;
-      return
-    }
-    if(this.formRegister.password.length < 6) {
-      this.invalidPasswordSpanError = true
-      return
-    }
+    if(this.registerForm.invalid) return
 
-    // submissao
+    const registerConductorRequest = {
+      name: this.registerForm.value.name ?? "",
+      email: this.registerForm.value.email ?? "",
+      cpf: this.registerForm.value.cpf ?? "",
+      password: this.registerForm.value.password ?? ""
+    }
     
-    this.conductorService.register(this.formRegister).subscribe(
+    this.conductorService.register(registerConductorRequest).subscribe(
       () => {
         this.router.navigate(['/login']);
-        this.resetForm()
       },
       (error: any) => {
-        this.resetForm()
         console.log(error)
       }
     );
