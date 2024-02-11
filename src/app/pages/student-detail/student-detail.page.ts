@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MaskitoElementPredicate, MaskitoOptions, maskitoTransform } from '@maskito/core';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
 import { shift } from 'src/app/entities/enums/shift';
@@ -13,6 +14,12 @@ import { studentActions } from 'src/app/store/studentActions';
   styleUrls: ['./student-detail.page.scss'],
 })
 export class StudentDetailPage implements OnInit {
+
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+
+  readonly maskPhone: MaskitoOptions = {
+    mask: ['(', /\d/,/\d/, ')' , ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  };
 
   studentId: string = '';
 
@@ -52,5 +59,13 @@ export class StudentDetailPage implements OnInit {
 
   redirectToUpdateStudent() {
     this.router.navigate(['/update-student', this.studentId]);
+  }
+
+  protected applyPhoneMask(phone: string | undefined): string {
+    if (!phone) {
+      return "";
+    }
+    const maskedPhone = maskitoTransform( phone, this.maskPhone);
+    return maskedPhone;
   }
 }
