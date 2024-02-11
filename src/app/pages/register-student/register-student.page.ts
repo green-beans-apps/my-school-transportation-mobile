@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { Store } from '@ngrx/store';
 import { months } from 'src/app/entities/enums/months';
 import { shift } from 'src/app/entities/enums/shift';
@@ -17,6 +18,12 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class RegisterStudentPage implements OnInit {
 
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+
+  readonly maskPhone: MaskitoOptions = {
+    mask: ['(', /\d/,/\d/, ')' , ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  };
+
   protected transportationTypes = {
     idaEVolta: transportationType.IDA_E_VOLTA,
     ida: transportationType.IDA,
@@ -31,20 +38,20 @@ export class RegisterStudentPage implements OnInit {
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected studentForm = this.formBuilderService.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
+    name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
     school: ['', [Validators.required]],
     grade: ['', [Validators.required]],
     transportType: [transportationType.IDA_E_VOLTA, [Validators.required]],
     shift: [shift.MANHA, [Validators.required]],
-    monthlyPayment: [0, [Validators.required]],
-    monthlyPaymentExpiration: [0, [Validators.required]],
-    responsibleName: ['', [Validators.required, Validators.minLength(4)]],
+    monthlyPayment: [0, [Validators.required, Validators.min(1)]],
+    monthlyPaymentExpiration: [0, [Validators.required, Validators.min(1), Validators.max(28)]],
+    responsibleName: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
     email: ['', [Validators.email, Validators.required]],
-    phone: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
     city: ['', [Validators.required]],
     district: ['', [Validators.required]],
     street: ['', [Validators.required]],
-    houseNumber: [0, [Validators.required]],
+    houseNumber: [0, [Validators.required, Validators.min(1)]],
     referencePoint: ['', [Validators.required]],
   })
 
