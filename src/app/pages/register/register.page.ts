@@ -3,8 +3,6 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { ConductorService } from 'src/app/services/conductor/conductor.service';
-import { CpfValidationService } from 'src/app/services/cpf-validation/cpf-validation.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { cpfValidator } from 'src/app/validators/cpfValidator';
 
 @Component({
@@ -28,7 +26,7 @@ export class RegisterPage implements OnInit {
     password: ['', [Validators.required, Validators.minLength(7)]]
   })
 
-  constructor(private conductorService: ConductorService, private router: Router, private validateCpf: CpfValidationService) { }
+  constructor(private conductorService: ConductorService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm.reset()
