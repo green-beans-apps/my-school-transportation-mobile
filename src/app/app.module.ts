@@ -12,6 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { StudentEffectsService } from './store/student-effects.service';
+import { MaskitoDirective } from '@maskito/angular';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +25,8 @@ import { StudentEffectsService } from './store/student-effects.service';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([StudentEffectsService])
+    EffectsModule.forRoot([StudentEffectsService]),
+    MaskitoDirective
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

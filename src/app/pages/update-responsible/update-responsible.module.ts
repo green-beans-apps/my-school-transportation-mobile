@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UpdateResponsiblePageRoutingModule } from './update-responsible-routing.module';
 
 import { UpdateResponsiblePage } from './update-responsible.page';
+import { MaskitoDirective } from '@maskito/angular';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { UpdateResponsiblePage } from './update-responsible.page';
     FormsModule,
     IonicModule,
     UpdateResponsiblePageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaskitoDirective
   ],
   declarations: [UpdateResponsiblePage]
 })
