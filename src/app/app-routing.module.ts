@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/update-student/update-student.module').then( m => m.UpdateStudentPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'update-conductor',
+    loadChildren: () => import('./pages/update-conductor/update-conductor.module').then( m => m.UpdateConductorPageModule)
+  },
 ];
 
 @NgModule({
