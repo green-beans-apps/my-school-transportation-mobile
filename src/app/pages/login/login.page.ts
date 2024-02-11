@@ -4,7 +4,7 @@ import { ConductorService } from 'src/app/services/conductor/conductor.service';
 import { loginResponse } from 'src/app/services/conductor/response/loginResponse';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.state';
-import { setConductorAction } from 'src/app/store/conductorAdtions';
+import { conductortActions } from 'src/app/store/conductorActions';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { maskitoTransform, MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
         window.localStorage.setItem('token', `Bearer ${result.token}`);
         window.localStorage.setItem('conductorId', result.conductor.id);
         this.loginForm.reset()
-        this.store.dispatch(setConductorAction({conductor: result.conductor}))
+        this.store.dispatch(conductortActions.setConductorAction({conductor: result.conductor}))
         this.router.navigate(['']);
       },
       (error: any) => {
