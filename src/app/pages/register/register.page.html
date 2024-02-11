@@ -1,42 +1,42 @@
 <main id="main">
   <div id="container">
-    <div id="form">
+    <form [formGroup]="registerForm" #formDir="ngForm" id="form">
       <div id="title-container">
         <div id="aesthetic-detail-of-the-title"></div>
         <h2 id="title-login">Cadastrar-se</h2>
       </div>
 
-      <ion-input [(ngModel)]="formRegister.name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40"
+      <ion-input formControlName="name" [counter]="true" labelPlacement="floating" label="Nome" maxlength="40"
         type="text" class="ion-input-color">
         <ion-icon class="ion-icon-color" slot="start" name="person-sharp" aria-hidden="true"></ion-icon>
       </ion-input>
+      <span class="span-required-error" *ngIf="registerForm.controls.name.invalid && formDir.submitted">Insira um Nome válido.</span>
 
-      <ion-input [(ngModel)]="formRegister.email" [counter]="true" labelPlacement="floating" label="Email"
+      <ion-input formControlName="email" [counter]="true" labelPlacement="floating" label="Email"
         maxlength="40" type="email" class="ion-input-color">
         <ion-icon class="ion-icon-color" slot="start" name="mail-sharp" aria-hidden="true"></ion-icon>
       </ion-input>
+      <span class="span-required-error" *ngIf="registerForm.controls.email.invalid && formDir.submitted">Insira um Email válido.</span>
 
-      <ion-input [(ngModel)]="formRegister.cpf" [counter]="true" labelPlacement="floating" label="CPF" maxlength="11"
-        type="text" class="ion-input-color">
+      <ion-input formControlName="cpf" [counter]="true" labelPlacement="floating" label="CPF" maxlength="14"
+        type="text" class="ion-input-color" [maskito]="maskCpf" [maskitoElement]="maskPredicate">
         <ion-icon class="ion-icon-color" slot="start" name="id-card-sharp" aria-hidden="true"></ion-icon>
       </ion-input>
+      <span class="span-required-error" *ngIf="registerForm.controls.cpf.invalid && formDir.submitted">Insira um CPF válido.</span>
 
       <div id="container-input-password" class="ion-input-color">
-        <ion-input [(ngModel)]="formRegister.password" [counter]="true" labelPlacement="floating" label="Senha"
+        <ion-input formControlName="password" [counter]="true" labelPlacement="floating" label="Senha"
           maxlength="40" type="password" class="ion-input-color">
           <ion-icon class="ion-icon-color" slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
         </ion-input>
 
-        <span class="span-required-error" *ngIf="requiredInputsError">Os campos de cadastro são obrigatórios.</span>
-        <span class="span-required-error" *ngIf="invalidEmailSpanError">Email não é válido.</span>
-        <span class="span-required-error" *ngIf="invalidPasswordSpanError">A senha deve ter mais de 5 caracteres.</span>
-        <span class="span-required-error" *ngIf="invalidCPFSpanError">Insira um CPF válido.</span>
+        <span class="span-required-error" *ngIf="registerForm.controls.password.invalid && formDir.submitted">A senha deve ter mais de 6 caracteres.</span>
       </div>
 
       <button expand="block" fill="solid" id="button-submit" (click)="register()">
         Cadastrar-se
       </button>
-    </div>
+    </form>
 
     <span id="spran-redirect-login">
       Já tem uma conta?
