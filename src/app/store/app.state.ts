@@ -3,7 +3,7 @@ import { note } from '../entities/note';
 import { conductor } from '../entities/conductor';
 import { student } from '../entities/student';
 import { studentActions } from './studentActions';
-import { conductortActions } from './conductorAdtions';
+import { conductortActions } from './conductorActions';
 import { resetActions } from './resetActions';
 
 export interface IAppState {
@@ -22,14 +22,6 @@ export const appInitialState: IAppState = {
   },
   students: []
 };
-
-
-export const loadNotesAction = createAction("[App] load notes")
-export const setNotesAction = createAction("[App] set notes", props<{ notes: note[] }>())
-export const successSetNotesAction = createAction("[App] [notes] success set notes")
-export const deleteNoteAction = createAction("[APP] delete note", props<{ noteId: string }>())
-export const updateNoteAction = createAction("[APP] update note", props<{ noteId: string, title: string, description: string }>())
-export const saveNoteAction = createAction("[APP] save note", props<{ id: string, title: string, description: string }>())
 
 export const appReducer = createReducer(
   appInitialState,
@@ -110,20 +102,12 @@ export const appReducer = createReducer(
       }
     })]
   })),
-
-  on(setNotesAction, (state, { notes }) => ({ ...state, notes: notes })),
-  on(deleteNoteAction, (state, { noteId }) => ({ ...state, notes: state.notes.filter(note => note.id !== noteId) })),
-  on(updateNoteAction, (state, { noteId, title, description }) => ({
+  on(conductortActions.updateConductorAction, (state, { name, email }) => ({
     ...state,
-    notes: state.notes.map(note => {
-      if (note.id === noteId) {
-        return { ...note, title, description };
-      }
-      return note;
-    }),
-  })),
-  on(saveNoteAction, (state, { title, description, id }) => ({
-    ...state,
-    notes: [...state.notes, { id, title, description }]
-  })),
+    conductor: {
+      ...state.conductor,
+       name: name,
+       email: email
+    }
+  }))
 );
