@@ -29,13 +29,13 @@ export class UpdateStudentPage implements OnInit {
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected updateStudentForm = this.formBuilderService.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
+    name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
     school: ['', [Validators.required]],
     grade: ['', [Validators.required]],
     transportType: [transportationType.IDA_E_VOLTA, [Validators.required]],
     shift: [shift.MANHA, [Validators.required]],
-    monthlyPayment: [0, [Validators.required]],
-    monthlyPaymentExpiration: [0, [Validators.required]],
+    monthlyPayment: [0, [Validators.required, Validators.min(1)]],
+    monthlyPaymentExpiration: [0, [Validators.required, Validators.min(1), Validators.max(28)]],
   })
 
   constructor(private activatedRouter: ActivatedRoute, private router: Router, private store: Store<{ app: IAppState }>,) { }
