@@ -1,0 +1,13 @@
+<div id="container">
+  <form [formGroup]="searchStudentForm" #formDir="ngForm">
+    <label>
+      Filtrar:
+    </label>
+    <select formControlName="fild" name="filds">
+      <option [value]="fildsType.NAME" selected>Nome</option>
+      <option [value]="fildsType.SCHOOL">Escola</option>
+      <option [value]="fildsType.TRANSPORTATION_TYPE">Tipo de transporte</option>
+    </select>
+    <input formControlName="value" type="text" id="input" placeholder="Pesquisar..." />
+  </form>
+</div>

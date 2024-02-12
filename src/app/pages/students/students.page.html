@@ -7,6 +7,7 @@
   <div id="container-students-count" *ngIf="(renderingStudents$ | async) as students">
     <h3 id="students-count">{{students.length}} Alunos cadastrados</h3>
   </div>
+  <app-search-student (searchStudent)="searchStudent($event.searshStudentForm)"></app-search-student>
   <ion-list>
     <ion-item button lines="full" *ngFor="let student of (renderingStudents$ | async)">
       <app-student-card (click)="selectStudent(student.id)" [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift.toString()"></app-student-card>
