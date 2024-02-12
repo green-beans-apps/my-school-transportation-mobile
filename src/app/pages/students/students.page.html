@@ -10,7 +10,7 @@
   <app-search-student (searchStudent)="searchStudent($event.searshStudentForm)"></app-search-student>
   <ion-list>
     <ion-item button lines="full" *ngFor="let student of (renderingStudents$ | async)">
-      <app-student-card (click)="selectStudent(student.id)" [name]="student.name" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift.toString()"></app-student-card>
+      <app-student-card (click)="selectStudent(student.id)" [name]="student.name" [school]="student.school" [payment]="student.monthlyPayment" [transportationType]="student.transportationType" [shift]="student.shift.toString()"></app-student-card>
     </ion-item>
   </ion-list>
 
