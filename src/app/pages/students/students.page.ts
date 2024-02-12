@@ -56,7 +56,7 @@ export class StudentsPage implements OnInit {
         map((students) => {
           return students.filter(student => {
             if(this.activeButton === "Todos") {
-              return student.name.toLowerCase().includes(data.value)
+              return student.name.toLowerCase().includes(data.value.toLowerCase())
             }
             if(student.name.toLowerCase().includes(data.value) && student.shift == this.activeButton as unknown as shift) {
               return student
@@ -74,7 +74,7 @@ export class StudentsPage implements OnInit {
         map((students) => {
           return students.filter(student => {
             if(this.activeButton === "Todos") {
-              return student.school.toLowerCase().includes(data.value)
+              return student.school.toLowerCase().includes(data.value.toLowerCase())
             }
             if(student.school.toLowerCase().includes(data.value) && student.shift == this.activeButton as unknown as shift) {
               return student
@@ -92,7 +92,7 @@ export class StudentsPage implements OnInit {
         map((students) => {
           return students.filter(student => {
             if(this.activeButton === "Todos") {
-              return student.transportationType.toLowerCase().includes(data.value)
+              return student.transportationType.toLowerCase().includes(data.value.toLowerCase())
             }
             if(student.transportationType.toLowerCase().includes(data.value) && student.shift == this.activeButton as unknown as shift) {
               return student
