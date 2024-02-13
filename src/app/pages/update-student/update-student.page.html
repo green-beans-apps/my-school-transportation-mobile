@@ -59,8 +59,9 @@
     <span *ngIf="updateStudentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">A data de vencimento deve estar entre o 1° e o 28° dia do mês.</span>
 
     <div id="container-button-submit-form">
-      <button (click)="submitForm()" id="button-submit-form">Salvar</button>
+      <button (click)="openConfirmPopUp()" id="button-submit-form">Salvar</button>
     </div>
   </form>
 
 </ion-content>
+<app-generic-modal-dialog *ngIf="popUpIsOpen" (confirmPopUp)="submitForm()" (cancelPopUp)="closeConfirmPopUp()" [title]="titlePopUp"></app-generic-modal-dialog>
