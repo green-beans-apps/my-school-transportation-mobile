@@ -5,5 +5,6 @@
     <P class="details-payment">Status: <span>{{statusPayment}}</span></P>
     <p *ngIf="statusPayment === 'Pago'" class="details-payment">Data do pagamento: {{paymentDate}}</p>
   </div>
-  <button (click)="registerPayment(month)" *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
+  <button (click)="openConfirmPopUp()" *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
 </div>
+<app-generic-modal-dialog *ngIf="popUpIsOpen" (confirmPopUp)="registerPayment()" (cancelPopUp)="closeConfirmPopUp()" [title]="titlePopUp"></app-generic-modal-dialog>
