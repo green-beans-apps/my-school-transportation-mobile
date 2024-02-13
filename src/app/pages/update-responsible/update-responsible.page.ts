@@ -15,6 +15,10 @@ import { studentActions } from 'src/app/store/studentActions';
 })
 export class UpdateResponsiblePage implements OnInit {
 
+  protected popUpIsOpen = false;
+
+  protected titlePopUp = "Deseja confirmar as alterações?"
+
   readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
 
   readonly maskPhone: MaskitoOptions = {
@@ -64,6 +68,7 @@ export class UpdateResponsiblePage implements OnInit {
       studentId: this.studentId
     }))
 
+    this.closeConfirmPopUp()
     this.return()
   }
 
@@ -73,5 +78,13 @@ export class UpdateResponsiblePage implements OnInit {
     }
     const maskedPhone = maskitoTransform( phone, this.maskPhone);
     return maskedPhone;
+  }
+
+  openConfirmPopUp() {
+    this.popUpIsOpen = true
+  }
+
+  closeConfirmPopUp() {
+    this.popUpIsOpen = false
   }
 }
