@@ -16,6 +16,9 @@ export class StudentCardComponent  implements OnInit {
   transportationType: transportationType = transportationType.IDA_E_VOLTA
   @Input()
   shift: string = 'Manhã'
+  @Input()
+  school: string = 'Colégio Decisão'
+
 
   constructor() { }
 

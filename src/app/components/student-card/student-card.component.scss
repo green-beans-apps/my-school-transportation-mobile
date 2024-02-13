@@ -1,6 +1,6 @@
 #student-card {
   width: 98vw;
-  height: 70px;
+  height: 90px;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -28,15 +28,19 @@
   color: #3d3d3d;
 }
 
-#container-detail {
-  display: flex;
-  flex-direction: column; 
-}
-
 #student-name {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  color: #444444;
+}
+
+#school{
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   line-height: normal;
   margin: 0;
   color: #444444;
@@ -53,7 +57,7 @@
 
 #transportationType {
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: normal;
   margin: 0;

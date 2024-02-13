@@ -39,7 +39,7 @@
       <div id="container-title-payment">
         <ion-icon class="icon-atributte" name="cash-outline"></ion-icon>
         <h4 class="title-atributte">Mensalidade:</h4>
-        <h4 class="result-title-atribute">R$ {{student.monthlyPayment}}</h4>
+        <h4 class="result-title-atribute" lang="pt-BR" style="text-transform: capitalize;" >R$ {{student.monthlyPayment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}}</h4>
       </div>
       <ion-icon class="icon-atributte" name="chevron-forward-outline"></ion-icon>
     </div>
