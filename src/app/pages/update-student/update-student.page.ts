@@ -15,6 +15,10 @@ import { studentActions } from 'src/app/store/studentActions';
 })
 export class UpdateStudentPage implements OnInit {
 
+  protected popUpIsOpen = false;
+
+  protected titlePopUp = "Deseja confirmar as alterações?"
+
   protected transportationTypes = transportationType
 
   protected shiftTypes = shift
@@ -75,8 +79,16 @@ export class UpdateStudentPage implements OnInit {
       monthlyPayment: this.updateStudentForm.value.monthlyPayment ?? 0,
       monthlyPaymentExpiration: this.updateStudentForm.value.monthlyPaymentExpiration ?? 0,
     }))
-    
+
+    this.closeConfirmPopUp()
     this.return()
   }
 
+  openConfirmPopUp() {
+    this.popUpIsOpen = true
+  }
+
+  closeConfirmPopUp() {
+    this.popUpIsOpen = false
+  }
 }
