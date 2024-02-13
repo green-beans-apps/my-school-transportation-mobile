@@ -13,11 +13,14 @@ import { conductortActions } from 'src/app/store/conductorActions';
 })
 export class UpdateConductorPage implements OnInit {
 
+  protected popUpIsOpen = false;
+
+  protected titlePopUp = "Deseja confirmar as alterações?"
+
   conductor$ = this.store.select('app').pipe(
     map(e => e.conductor)
   )
 
- 
   private formBuilderService = inject(NonNullableFormBuilder)
 
   protected updateConductorForm = this.formBuilderService.group({
@@ -51,7 +54,15 @@ export class UpdateConductorPage implements OnInit {
       id: localStorage.getItem("conductorId") ?? ""
     }))
 
+    this.closeConfirmPopUp()
     this.return()
   }
 
+  openConfirmPopUp() {
+    this.popUpIsOpen = true
+  }
+
+  closeConfirmPopUp() {
+    this.popUpIsOpen = false
+  }
 }
