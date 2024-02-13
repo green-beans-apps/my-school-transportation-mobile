@@ -1,0 +1,9 @@
+<div id="container" (click)="cancel()">
+  <div id="pop-up" (click)="stopPropagation($event)">
+    <h1>{{title}}</h1>
+    <div id="container-buttons">
+      <button (click)="cancel()" id="button-cancel">Cancelar</button>
+      <button (click)="confirm()" id="button-confirm">Confirmar</button>
+    </div>
+  </div>
+</div>
