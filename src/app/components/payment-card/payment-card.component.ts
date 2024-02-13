@@ -8,6 +8,10 @@ import { months } from 'src/app/entities/enums/months';
 })
 export class PaymentCardComponent  implements OnInit {
 
+  popUpIsOpen = false
+
+  titlePopUp = ""
+
   @Input()
   month = months.JANEIRO
 
@@ -32,10 +36,12 @@ export class PaymentCardComponent  implements OnInit {
 
   ngOnInit() {
     this.setPaymentStatus()
+    this.titlePopUp = `Confirmar o pagamento de ${this.month}?`
   }
 
-  registerPayment(month: months) {
-    this.registerPaymentEmmiter.emit({month: month})
+  registerPayment() {
+    this.closeConfirmPopUp()
+    this.registerPaymentEmmiter.emit({month: this.month})
   }
 
   setPaymentStatus() {
@@ -43,5 +49,13 @@ export class PaymentCardComponent  implements OnInit {
       this.statusPayment = 'Pago'
       return
     }
+  }
+
+  openConfirmPopUp() {
+    this.popUpIsOpen = true
+  }
+
+  closeConfirmPopUp() {
+    this.popUpIsOpen = false
   }
 }
