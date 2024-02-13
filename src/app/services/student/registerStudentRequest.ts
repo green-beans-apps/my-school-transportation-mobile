@@ -1,4 +1,5 @@
 export interface StudentData {
+  id: string;
   studentName: string;
   school: string;
   grade: string;
@@ -10,12 +11,14 @@ export interface StudentData {
 }
 
 export interface ResponsibleData {
+  id: string;
   responsibleName: string;
   email: string;
   phone: string;
 }
 
 export interface AddressData {
+  id: string;
   city: string;
   district: string;
   street: string;
