@@ -12,6 +12,11 @@ import { studentActions } from 'src/app/store/studentActions';
   styleUrls: ['./update-address.page.scss'],
 })
 export class UpdateAddressPage implements OnInit {
+
+  protected popUpIsOpen = false;
+
+  protected titlePopUp = "Deseja confirmar as alterações?"
+
   student$ = this.store.select('app').pipe(
     map(e => e.students),
     map(students => students.find(student => student.id === this.studentId))
@@ -61,7 +66,16 @@ export class UpdateAddressPage implements OnInit {
       studentId: this.studentId
     }))
 
+    this.closeConfirmPopUp()
     this.return()
+  }
+
+  openConfirmPopUp() {
+    this.popUpIsOpen = true
+  }
+
+  closeConfirmPopUp() {
+    this.popUpIsOpen = false
   }
 
 }
