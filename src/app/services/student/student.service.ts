@@ -33,6 +33,7 @@ export class StudentService {
   registerStudent(student: student): Observable<student> {
     const requestData: IRegisterStudentRequest = {
       student: {
+        id: student.id,
         studentName: student.name,
         school: student.school,
         grade: student.grade,
@@ -43,11 +44,13 @@ export class StudentService {
         transportationType: student.transportationType,
       },
       responsible: {
+        id: student.responsible.id,
         responsibleName: student.responsible.name,
         email: student.responsible.email,
         phone: student.responsible.phone,
       },
       address: {
+        id: student.address.id,
         city: student.address.city,
         district: student.address.district,
         street: student.address.street,
