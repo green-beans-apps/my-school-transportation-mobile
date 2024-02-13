@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { GenericModalDialogComponent } from 'src/app/components/generic-modal-dialog/generic-modal-dialog.component';
 import { months } from 'src/app/entities/enums/months';
 import { payment } from 'src/app/entities/payment';
 import { IAppState } from 'src/app/store/app.state';
@@ -34,7 +36,7 @@ export class PaymentDetailPage implements OnInit {
   constructor(
     private store: Store<{ app: IAppState }>,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -85,4 +87,5 @@ export class PaymentDetailPage implements OnInit {
   
     return `${day}/${month}/${year}`;
   }
+
 }
