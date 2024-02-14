@@ -13,21 +13,21 @@
       maxlength="40" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="person-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.name.invalid && formDir.submitted" class="span-erros">Digite um nome de aluno
+    <span *ngIf="studentForm.controls.name.invalid && formSubmited" class="span-erros">Digite um nome de aluno
       válido</span>
 
     <ion-input formControlName="school" [counter]="true" labelPlacement="floating" label="Escola" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="business-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.school.invalid && formDir.submitted" class="span-erros">O campo "Escola" é
+    <span *ngIf="studentForm.controls.school.invalid && formSubmited" class="span-erros">O campo "Escola" é
       obrigatório</span>
 
     <ion-input formControlName="grade" [counter]="true" labelPlacement="floating" label="Série" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="school-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.grade.invalid && formDir.submitted" class="span-erros">O campo "Série" é
+    <span *ngIf="studentForm.controls.grade.invalid && formSubmited" class="span-erros">O campo "Série" é
       obrigatório</span>
 
     <div class="container-select">
@@ -38,7 +38,7 @@
         <ion-select-option [value]="transportationTypes.ida">Ida</ion-select-option>
         <ion-select-option [value]="transportationTypes.volta">Volta</ion-select-option>
       </ion-select>
-      <span *ngIf="studentForm.controls.transportType.invalid && formDir.submitted" class="span-erros">O campo "Tipo de
+      <span *ngIf="studentForm.controls.transportType.invalid && formSubmited" class="span-erros">O campo "Tipo de
         transporte" é obrigatório</span>
     </div>
 
@@ -49,7 +49,7 @@
         <ion-select-option [value]="shiftTypes.manha">Manhã</ion-select-option>
         <ion-select-option [value]="shiftTypes.tarde">Tarde</ion-select-option>
       </ion-select>
-      <span *ngIf="studentForm.controls.shift.invalid && formDir.submitted" class="span-erros">O campo "Turno" é
+      <span *ngIf="studentForm.controls.shift.invalid && formSubmited" class="span-erros">O campo "Turno" é
         obrigatório</span>
     </div>
 
@@ -57,14 +57,14 @@
       label="Mensalidade" maxlength="40" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="cash-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.monthlyPayment.invalid && formDir.submitted" class="span-erros">O campo
+    <span *ngIf="studentForm.controls.monthlyPayment.invalid && formSubmited" class="span-erros">O campo
       "Mensalidade" é obrigatório</span>
 
     <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento"
       maxlength="2" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.monthlyPaymentExpiration.invalid && formDir.submitted" class="span-erros">A data
+    <span *ngIf="studentForm.controls.monthlyPaymentExpiration.invalid && formSubmited" class="span-erros">A data
       de vencimento deve estar entre o 1° e o 28° dia do mês.</span>
 
     <h2>Responsável</h2>
@@ -72,21 +72,21 @@
       maxlength="40" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="people-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.responsibleName.invalid && formDir.submitted" class="span-erros">O campo "Nome do
+    <span *ngIf="studentForm.controls.responsibleName.invalid && formSubmited" class="span-erros">O campo "Nome do
       Responsável" é obrigatório</span>
 
     <ion-input formControlName="email" [counter]="true" labelPlacement="floating" label="Email" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.email.invalid && formDir.submitted" class="span-erros">Digite um Email
+    <span *ngIf="studentForm.controls.email.invalid && formSubmited" class="span-erros">Digite um Email
       válido</span>
 
     <ion-input formControlName="phone" [counter]="true" labelPlacement="floating" label="Telefone" maxlength="16"
       type="text" class="ion-input-color" [maskito]="maskPhone" [maskitoElement]="maskPredicate">
       <ion-icon class="ion-icon-color" slot="start" name="call-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.phone.invalid && formDir.submitted" class="span-erros">Digite um Telefone
+    <span *ngIf="studentForm.controls.phone.invalid && formSubmited" class="span-erros">Digite um Telefone
       válido</span>
 
     <h2>Endereço</h2>
@@ -94,35 +94,35 @@
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.city.invalid && formDir.submitted" class="span-erros">O campo "Cidade" é
+    <span *ngIf="studentForm.controls.city.invalid && formSubmited" class="span-erros">O campo "Cidade" é
       obrigatório</span>
 
     <ion-input formControlName="district" [counter]="true" labelPlacement="floating" label="Bairro" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.district.invalid   && formDir.submitted" class="span-erros">O campo "Bairro" é
+    <span *ngIf="studentForm.controls.district.invalid   && formSubmited" class="span-erros">O campo "Bairro" é
       obrigatório</span>
 
     <ion-input formControlName="street" [counter]="true" labelPlacement="floating" label="Rua" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.street.invalid && formDir.submitted" class="span-erros">O campo "Rua" é
+    <span *ngIf="studentForm.controls.street.invalid && formSubmited" class="span-erros">O campo "Rua" é
       obrigatório</span>
 
     <ion-input formControlName="houseNumber" [counter]="true" labelPlacement="floating" label="Número" maxlength="40"
       type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.houseNumber.invalid && formDir.submitted" class="span-erros">O campo "Número" é
+    <span *ngIf="studentForm.controls.houseNumber.invalid && formSubmited" class="span-erros">O campo "Número" é
       obrigatório</span>
 
     <ion-input formControlName="referencePoint" [counter]="true" labelPlacement="floating" label="Ponto de Refêrencia"
       maxlength="40" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
-    <span *ngIf="studentForm.controls.referencePoint.invalid && formDir.submitted" class="span-erros">O campo "Ponto de
+    <span *ngIf="studentForm.controls.referencePoint.invalid && formSubmited" class="span-erros">O campo "Ponto de
       referencia" é obrigatório</span>
     <div id="container-button-submit-form">
       <button (click)="submitForm()" id="button-submit-form">Cadastrar</button>
