@@ -18,6 +18,8 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class RegisterStudentPage implements OnInit {
 
+  protected formSubmited = false;
+
   readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
 
   readonly maskPhone: MaskitoOptions = {
@@ -46,7 +48,7 @@ export class RegisterStudentPage implements OnInit {
     monthlyPayment: [0, [Validators.required, Validators.min(1)]],
     monthlyPaymentExpiration: [0, [Validators.required, Validators.min(1), Validators.max(28)]],
     responsibleName: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
-    email: ['', [Validators.email, Validators.required]],
+    email: ['', [Validators.email]],
     phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
     city: ['', [Validators.required]],
     district: ['', [Validators.required]],
@@ -58,9 +60,27 @@ export class RegisterStudentPage implements OnInit {
   constructor(private router: Router, private store: Store<{app: IAppState}>) { }
 
   ngOnInit() {
+    this.studentForm.patchValue({
+      name: "",
+      school: "",
+      grade: "",
+      transportType: transportationType.IDA_E_VOLTA,
+      shift: shift.MANHA,
+      monthlyPayment: 0,
+      monthlyPaymentExpiration: 0,
+      responsibleName: "",
+      email: "",
+      phone: "",
+      city: "",
+      district: "",
+      street: "",
+      houseNumber: 0,
+      referencePoint: "",
+    })
   }
 
   submitForm(): void {
+    this.formSubmited = true
     if(this.studentForm.invalid) return
 
     const student: student = {
@@ -98,6 +118,7 @@ export class RegisterStudentPage implements OnInit {
     Object.keys(this.studentForm.controls).forEach(key => {
       this.studentForm.get(key)?.markAsUntouched();
     });
+    this.formSubmited = false
     this.router.navigate(['/home']);
   }
 
