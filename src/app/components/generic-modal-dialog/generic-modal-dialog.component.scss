@@ -15,12 +15,21 @@
 #pop-up {
   background-color: #FFF;
   min-width: 300px;
+  max-width: 340px;
   border-radius: 5px;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 15px;
   padding: 5px 10px;
+}
+
+#container-title {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  text-align: center;
+  width: 90%;
 }
 
 h1 {
@@ -40,6 +49,7 @@ h1 {
 }
 
 button {
+  min-width: 60px;
   padding: 8px;
   border-radius: 5px;
   font-family: 'Inter', sans-serif;
@@ -49,6 +59,6 @@ button {
 
 #button-cancel {
   background-color: transparent;
-  border: 1px solid #262626;
-  color: #262626;
+  border: 2px solid #363636;
+  color: #363636;
 }
