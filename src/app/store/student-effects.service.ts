@@ -105,4 +105,12 @@ export class StudentEffectsService {
     ),
     map(() => conductortActions.successConductorAction())
   ))
+
+  public cancelPaymentEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(studentActions.cancelPaymentAction),
+    switchMap((action) => 
+      this.studentService.cancelPayment(action.id)
+    ),
+    map(() => studentActions.successSetStudentAction())
+  ))
 }
