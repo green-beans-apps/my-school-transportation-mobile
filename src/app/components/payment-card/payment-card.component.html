@@ -5,6 +5,8 @@
     <P class="details-payment">Status: <span>{{statusPayment}}</span></P>
     <p *ngIf="statusPayment === 'Pago'" class="details-payment">Data do pagamento: {{paymentDate}}</p>
   </div>
-  <button (click)="openConfirmPopUp()" *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
+  <button id="confirm-payment" (click)="toggleConfirmPaymentPopUp()" *ngIf="statusPayment !== 'Pago'" class="button-payment">Pagar</button>
+  <button id="cancel-payment" (click)="toggleCancelPaymentPopUp()" *ngIf="statusPayment === 'Pago'" class="button-payment">Cancelar</button>
 </div>
-<app-generic-modal-dialog *ngIf="popUpIsOpen" (confirmPopUp)="registerPayment()" (cancelPopUp)="closeConfirmPopUp()" [title]="titlePopUp"></app-generic-modal-dialog>
+<app-generic-modal-dialog *ngIf="popUpConfirmPaymentIsOpen" (confirmPopUp)="registerPayment()" (cancelPopUp)="toggleConfirmPaymentPopUp()" [title]="titlePopUp"></app-generic-modal-dialog>
+<app-generic-modal-dialog *ngIf="popUpCancelPaymentIsOpen" (confirmPopUp)="cancelPayment()" (cancelPopUp)="toggleCancelPaymentPopUp()" [title]="titlePopUpCancelPayment" titleButtonConfirm="Sim" titleButtonCancel="Não"></app-generic-modal-dialog>
