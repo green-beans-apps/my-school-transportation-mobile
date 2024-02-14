@@ -65,6 +65,7 @@ export class StudentService {
 
     const urlCreateStudent = `${this.baseUrl}student`
     return this.http.post<student>(urlCreateStudent, requestData, {headers: headers})
+
   }
 
   registerPayment(payment: payment, studentId: string) {
@@ -137,5 +138,13 @@ export class StudentService {
     const urlUpdateStudent = `${this.baseUrl}student`
     return this.http.put<student>(urlUpdateStudent, requestData, {headers: headers})
 
+  }
+
+  cancelPayment(paymentId: string) {
+    const headers = new HttpHeaders({
+      'Authorization': window.localStorage.getItem('token') ?? ''
+    })
+    const urlUpdateStudent = `${this.baseUrl}payment/${paymentId}`
+    return this.http.delete<student>(urlUpdateStudent, {headers: headers})
   }
 }
