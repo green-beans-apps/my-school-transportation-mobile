@@ -13,7 +13,7 @@ const registerPaymentAction = createAction("[App] [Student] [Payment] register P
 const updateResponsibleAction = createAction("[App] [Student] [Responsible] update Responsible", props<{name: string, email: string, phone: string, studentId: string}>())
 const updateAddressAction = createAction("[App] [Student] [Address] update Address", props<{city: string, district: string, street: string, houseNumber: number, referencePoint: string, studentId: string}>())
 const updateStudentAction = createAction("[App] [Student] update student", props<{name: string, school: string, grade: string, transportationType: transportationType, shift: shift, monthlyPayment: number, monthlyPaymentExpiration: number, id: string}>())
-
+const cancelPaymentAction = createAction("[App] [Payment] cancel payment", props<{id: string}>())
 
 export const studentActions = {
   loadStudentsAction,
@@ -23,5 +23,6 @@ export const studentActions = {
   registerPaymentAction,
   updateResponsibleAction,
   updateAddressAction,
-  updateStudentAction
+  updateStudentAction,
+  cancelPaymentAction
 }
