@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { months } from 'src/app/entities/enums/months';
+import { paymentStatus } from './paymentStatus';
 
 @Component({
   selector: 'app-payment-card',
@@ -8,9 +9,15 @@ import { months } from 'src/app/entities/enums/months';
 })
 export class PaymentCardComponent  implements OnInit {
 
-  popUpIsOpen = false
+  paymentStatusEnum = paymentStatus
+
+  popUpCancelPaymentIsOpen = false
+
+  popUpConfirmPaymentIsOpen = false
 
   titlePopUp = ""
+
+  titlePopUpCancelPayment = ""
 
   @Input()
   month = months.JANEIRO
@@ -18,7 +25,7 @@ export class PaymentCardComponent  implements OnInit {
   @Input()
   valuePayment = 0
 
-  statusPayment = 'Pendente'
+  statusPayment = paymentStatus.PENDENTE
 
   @Input()
   paymentDate: string | undefined;
@@ -32,30 +39,38 @@ export class PaymentCardComponent  implements OnInit {
 
   @Output() registerPaymentEmmiter = new EventEmitter<{month: months}>();
 
+  @Output() cancelPaymentEmmiter = new EventEmitter<{id: string}>();
+
   constructor() { }
 
   ngOnInit() {
     this.setPaymentStatus()
     this.titlePopUp = `Confirmar o pagamento de ${this.month}?`
+    this.titlePopUpCancelPayment = `Deseja CANCELAR o pagamento de ${this.month}?`
   }
 
   registerPayment() {
-    this.closeConfirmPopUp()
+    this.toggleConfirmPaymentPopUp()
     this.registerPaymentEmmiter.emit({month: this.month})
+  }
+
+  cancelPayment() {
+    this.toggleCancelPaymentPopUp()
+    this.cancelPaymentEmmiter.emit({id: this.id ?? ""})
   }
 
   setPaymentStatus() {
     if(this.paymentDate) {
-      this.statusPayment = 'Pago'
+      this.statusPayment = paymentStatus.PAGO
       return
     }
   }
 
-  openConfirmPopUp() {
-    this.popUpIsOpen = true
+  toggleConfirmPaymentPopUp() {
+    this.popUpConfirmPaymentIsOpen = !this.popUpConfirmPaymentIsOpen
   }
 
-  closeConfirmPopUp() {
-    this.popUpIsOpen = false
+  toggleCancelPaymentPopUp() {
+    this.popUpCancelPaymentIsOpen = !this.popUpCancelPaymentIsOpen
   }
 }
