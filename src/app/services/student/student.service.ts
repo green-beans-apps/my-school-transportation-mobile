@@ -8,14 +8,14 @@ import { updateResponsibleRequest } from './updateResponsibleRequest';
 import { updateAddressRequest } from './updateAddressRequest';
 import { updateStudentRequest } from './updateStudentRequest';
 import { transportationType } from 'src/app/entities/enums/transportationType';
-import { environmentProd } from 'src/environment.prod';
+import { environments } from 'src/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private baseUrl = environmentProd.baseUrlApi
+  private baseUrl = environments.baseUrlApi
 
 
   constructor(private http: HttpClient) { }

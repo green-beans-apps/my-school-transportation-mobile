@@ -36,7 +36,7 @@ export class UpdateResponsiblePage implements OnInit {
 
   protected updateResponsibleForm = this.formBuilderService.group({
     name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
-    email: ['', [Validators.email, Validators.required]],
+    email: ['', [Validators.email]],
     phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
   })
 

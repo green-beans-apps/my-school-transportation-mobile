@@ -3,21 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { conductor } from 'src/app/entities/conductor';
 import { loginResponse } from './response/loginResponse';
-import { environmentProd } from 'src/environment.prod';
+import { environments } from 'src/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConductorService {
   
-  private baseUrl = environmentProd.baseUrlApi
-
-  // private urlLogin: string = 'http://localhost:8080/auth/login'
-
-  // private urlRegister: string = 'http://localhost:8080/conductor'
-
-  // private urlGetConductorById: string = 'http://localhost:8080/conductor/'
-
+  private baseUrl = environments.baseUrlApi
   
   constructor(private http: HttpClient) { }
 
