@@ -59,6 +59,10 @@ export class PaymentDetailPage implements OnInit {
     this.store.dispatch(studentActions.registerPaymentAction({studentId: this.studentId, payment: payment}))
   }
 
+  cancelPayment(paymentId: string) {
+    this.store.dispatch(studentActions.cancelPaymentAction({id: paymentId}))
+  }
+
   returnPage() {
     this.router.navigate(['/student-detail', this.studentId]);
   }
