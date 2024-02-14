@@ -109,5 +109,12 @@ export const appReducer = createReducer(
        name: name,
        email: email
     }
+  })),
+  on(studentActions.cancelPaymentAction, (state, { id }) => ({
+    ...state,
+    students: state.students.map((student) => ({
+      ...student,
+      payments: student.payments.filter((payment) => payment.id !== id),
+    })),
   }))
 );
