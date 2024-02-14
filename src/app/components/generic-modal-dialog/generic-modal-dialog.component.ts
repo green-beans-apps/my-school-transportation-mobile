@@ -10,6 +10,12 @@ export class GenericModalDialogComponent  implements OnInit {
   @Input()
   title: string = "Generic Modal Dialog"
 
+  @Input()
+  titleButtonConfirm: string = "Confirmar"
+
+  @Input()
+  titleButtonCancel: string = "Cancelar"
+
   @Output()
   confirmPopUp = new EventEmitter<null>()
 
