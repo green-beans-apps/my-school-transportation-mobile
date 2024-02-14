@@ -58,14 +58,14 @@
       <ion-icon class="ion-icon-color" slot="start" name="cash-outline" aria-hidden="true"></ion-icon>
     </ion-input>
     <span *ngIf="studentForm.controls.monthlyPayment.invalid && formSubmited" class="span-erros">O campo
-      "Mensalidade" é obrigatório</span>
+      "Mensalidade" é obrigatório (Apenas números)</span>
 
     <ion-input formControlName="monthlyPaymentExpiration" [counter]="true" labelPlacement="floating" label="Vencimento"
       maxlength="2" type="text" class="ion-input-color">
       <ion-icon class="ion-icon-color" slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
     </ion-input>
     <span *ngIf="studentForm.controls.monthlyPaymentExpiration.invalid && formSubmited" class="span-erros">A data
-      de vencimento deve estar entre o 1° e o 28° dia do mês.</span>
+      de vencimento deve estar entre o 1° e o 28° dia do mês (Apenas números)</span>
 
     <h2>Responsável</h2>
     <ion-input formControlName="responsibleName" [counter]="true" labelPlacement="floating" label="Nome do Responsável"
