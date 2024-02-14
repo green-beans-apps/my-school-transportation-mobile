@@ -8,13 +8,14 @@ import { updateResponsibleRequest } from './updateResponsibleRequest';
 import { updateAddressRequest } from './updateAddressRequest';
 import { updateStudentRequest } from './updateStudentRequest';
 import { transportationType } from 'src/app/entities/enums/transportationType';
+import { environmentProd } from 'src/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private baseUrl = "http://localhost:8080/"
+  private baseUrl = environmentProd.baseUrlApi
 
 
   constructor(private http: HttpClient) { }
@@ -26,7 +27,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlGetAll = `${this.baseUrl}student/conductor/${conductorId}`
+    const urlGetAll = `${this.baseUrl}/student/conductor/${conductorId}`
     return this.http.get<student[]>(urlGetAll, {headers: headers})
   }
 
@@ -63,7 +64,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlCreateStudent = `${this.baseUrl}student`
+    const urlCreateStudent = `${this.baseUrl}/student`
     return this.http.post<student>(urlCreateStudent, requestData, {headers: headers})
 
   }
@@ -79,7 +80,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlRegisterPayment = `${this.baseUrl}payment`
+    const urlRegisterPayment = `${this.baseUrl}/payment`
     return this.http.post<student>(urlRegisterPayment, requestData, {headers: headers})
   }
 
@@ -95,7 +96,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlUpdateResponsible = `${this.baseUrl}student/responsible`
+    const urlUpdateResponsible = `${this.baseUrl}/student/responsible`
     return this.http.put<student>(urlUpdateResponsible, requestData, {headers: headers})
 
   }
@@ -114,7 +115,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlUpdateResponsible = `${this.baseUrl}student/address`
+    const urlUpdateResponsible = `${this.baseUrl}/student/address`
     return this.http.put<student>(urlUpdateResponsible, requestData, {headers: headers})
 
   }
@@ -135,7 +136,7 @@ export class StudentService {
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
 
-    const urlUpdateStudent = `${this.baseUrl}student`
+    const urlUpdateStudent = `${this.baseUrl}/student`
     return this.http.put<student>(urlUpdateStudent, requestData, {headers: headers})
 
   }
@@ -144,7 +145,7 @@ export class StudentService {
     const headers = new HttpHeaders({
       'Authorization': window.localStorage.getItem('token') ?? ''
     })
-    const urlUpdateStudent = `${this.baseUrl}payment/${paymentId}`
+    const urlUpdateStudent = `${this.baseUrl}/payment/${paymentId}`
     return this.http.delete<student>(urlUpdateStudent, {headers: headers})
   }
 }

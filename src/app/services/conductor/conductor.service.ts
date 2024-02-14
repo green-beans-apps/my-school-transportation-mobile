@@ -3,19 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { conductor } from 'src/app/entities/conductor';
 import { loginResponse } from './response/loginResponse';
+import { environmentProd } from 'src/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConductorService {
   
-  private baseUrl = 'http://localhost:8080/'
+  private baseUrl = environmentProd.baseUrlApi
 
-  private urlLogin: string = 'http://localhost:8080/auth/login'
+  // private urlLogin: string = 'http://localhost:8080/auth/login'
 
-  private urlRegister: string = 'http://localhost:8080/conductor'
+  // private urlRegister: string = 'http://localhost:8080/conductor'
 
-  private urlGetConductorById: string = 'http://localhost:8080/conductor/'
+  // private urlGetConductorById: string = 'http://localhost:8080/conductor/'
 
   
   constructor(private http: HttpClient) { }
@@ -26,7 +27,9 @@ export class ConductorService {
         'Content-Type': 'application/json',
       })
     }
-    return this.http.post<loginResponse>(this.urlLogin, data, httpOptions)
+
+    const urlLogin = `${this.baseUrl}/auth/login`
+    return this.http.post<loginResponse>(urlLogin, data, httpOptions)
   }
 
   register(data: {name: string, email: string,cpf: string, password: string}): Observable<conductor> {
@@ -35,7 +38,8 @@ export class ConductorService {
         'Content-Type': 'application/json',
       })
     }
-    return this.http.post<conductor>(this.urlRegister, data, httpOptions)
+    const urlRegister = `${this.baseUrl}/conductor`
+    return this.http.post<conductor>(urlRegister, data, httpOptions)
   }
 
   getConductorById(id: string) : Observable<conductor>{
@@ -45,12 +49,11 @@ export class ConductorService {
         'Authorization': window.localStorage.getItem('token') ?? ''
       })
     }
-    const url = `${this.urlGetConductorById}${id}`;
-    return this.http.get<conductor>(url, httpOptions);
+    const urlGetConductorById = `${this.baseUrl}/conductor/${id}`
+    return this.http.get<conductor>(urlGetConductorById, httpOptions);
   }
 
   updateConductor(data: {name: string, email: string, id: string}) {
-    
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -64,7 +67,7 @@ export class ConductorService {
       conductorId: data.id
     }
 
-    const updateUrl = `${this.baseUrl}conductor`;
+    const updateUrl = `${this.baseUrl}/conductor`;
     return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
   }
 }
