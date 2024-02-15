@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { conductor } from 'src/app/entities/conductor';
 import { loginResponse } from './response/loginResponse';
-import { environments } from 'src/environments';
+import { envs } from 'env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConductorService {
   
-  private baseUrl = environments.baseUrlApi
+  private baseUrl = envs.baseUrlApi
   
   constructor(private http: HttpClient) { }
 
