@@ -54,9 +54,11 @@
     </div>
 
     <ion-input formControlName="monthlyPayment" id="input-monthly-payment" [counter]="true" labelPlacement="floating"
-      label="Mensalidade" maxlength="40" type="text" class="ion-input-color">
+      label="Mensalidade" maxlength="40" type="text" class="ion-input-color"
+      [value]="studentForm.controls.monthlyPayment.value | formatMonthlyPayment">
       <ion-icon class="ion-icon-color" slot="start" name="cash-outline" aria-hidden="true"></ion-icon>
     </ion-input>
+
     <span *ngIf="studentForm.controls.monthlyPayment.invalid && formSubmited" class="span-erros">O campo
       "Mensalidade" é obrigatório (Apenas números)</span>
 
