@@ -23,6 +23,7 @@ export class UpdateStudentPage implements OnInit {
 
   protected shiftTypes = shift
 
+
   student$ = this.store.select('app').pipe(
     map(e => e.students),
     map(students => students.find(student => student.id === this.studentId))
@@ -76,7 +77,7 @@ export class UpdateStudentPage implements OnInit {
       grade: this.updateStudentForm.value.grade ?? "",
       transportationType: this.updateStudentForm.value.transportType ?? transportationType.IDA_E_VOLTA,
       shift: this.updateStudentForm.value.shift ?? shift.MANHA,
-      monthlyPayment: this.updateStudentForm.value.monthlyPayment ?? 0,
+      monthlyPayment: this.convertMonthlyPaymentToNumber(this.updateStudentForm.value.monthlyPayment),
       monthlyPaymentExpiration: this.updateStudentForm.value.monthlyPaymentExpiration ?? 0,
     }))
 
@@ -90,5 +91,13 @@ export class UpdateStudentPage implements OnInit {
 
   closeConfirmPopUp() {
     this.popUpIsOpen = false
+  }
+
+  convertMonthlyPaymentToNumber(monthlyPayment: any): number {
+    if (monthlyPayment) {
+      monthlyPayment = monthlyPayment.replace(',', '');
+      monthlyPayment = monthlyPayment.slice(0, monthlyPayment.length - 2) + "." + monthlyPayment.slice(monthlyPayment.length - 2);
+    }
+    return Number(monthlyPayment);
   }
 }

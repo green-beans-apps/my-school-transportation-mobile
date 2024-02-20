@@ -48,13 +48,13 @@ export class RegisterStudentPage implements OnInit {
     monthlyPayment: [0, [Validators.required, Validators.min(1)]],
     monthlyPaymentExpiration: [0, [Validators.required, Validators.min(1), Validators.max(28)]],
     responsibleName: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
-    email: ['', [Validators.email]],
+    email: [''],
     phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
     city: ['', [Validators.required]],
     district: ['', [Validators.required]],
     street: ['', [Validators.required]],
-    houseNumber: [0, [Validators.required, Validators.min(1)]],
-    referencePoint: ['', [Validators.required]],
+    houseNumber: [0],
+    referencePoint: [''],
   })
 
   constructor(private router: Router, private store: Store<{app: IAppState}>) { }
@@ -71,7 +71,7 @@ export class RegisterStudentPage implements OnInit {
       responsibleName: "",
       email: "",
       phone: "",
-      city: "",
+      city: "Recife",
       district: "",
       street: "",
       houseNumber: 0,
@@ -90,7 +90,7 @@ export class RegisterStudentPage implements OnInit {
       shift: this.studentForm.value.shift as shift ?? shift.MANHA,
       grade: this.studentForm.value.grade ?? "",
       transportationType: this.studentForm.value.transportType as transportationType ?? transportationType.IDA_E_VOLTA,
-      monthlyPayment: this.studentForm.value.monthlyPayment ?? 0,
+      monthlyPayment: this.convertMonthlyPaymentToNumber(this.studentForm.value.monthlyPayment),
       monthlyPaymentExpiration: this.studentForm.value.monthlyPaymentExpiration ?? 0,
       responsible: {
         id: uuidv4(),
@@ -122,4 +122,11 @@ export class RegisterStudentPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  convertMonthlyPaymentToNumber(monthlyPayment: any): number {
+    if (monthlyPayment) {
+      monthlyPayment = monthlyPayment.replace(',', '');
+      monthlyPayment = monthlyPayment.slice(0, monthlyPayment.length - 2) + "." + monthlyPayment.slice(monthlyPayment.length - 2);
+    }
+    return Number(monthlyPayment);
+  }
 }
