@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { resetActions } from 'src/app/store/resetActions';
 import { ConductorService } from 'src/app/services/conductor/conductor.service';
 import { conductortActions } from 'src/app/store/conductorActions';
+import { MaskitoOptions, maskitoTransform } from '@maskito/core';
+
 
 @Component({
   selector: 'app-settings',
@@ -15,8 +17,17 @@ import { conductortActions } from 'src/app/store/conductorActions';
 
 export class SettingsPage implements OnInit {
 
+  readonly maskCpf: MaskitoOptions = {
+    mask: [/\d/,/\d/,/\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  };
+
   conductor$ = this.store.select('app').pipe(
-    map(e => e.conductor)
+    map(e => {
+      const conductor = {...e.conductor};
+      conductor.cpf = maskitoTransform(conductor.cpf, this.maskCpf)
+
+      return conductor;
+    })
   )
 
   constructor(
