@@ -101,7 +101,7 @@ export class StudentService {
 
   }
 
-  updateAddress(city: string, district: string, street: string, houseNumber: number, referencePoint: string, studentId: string) {
+  updateAddress(city: string, district: string, street: string, houseNumber: string, referencePoint: string, studentId: string) {
     const requestData: updateAddressRequest = {
       city: city,
       district: district,

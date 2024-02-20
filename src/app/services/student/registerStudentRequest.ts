@@ -23,7 +23,7 @@ export interface AddressData {
   district: string;
   street: string;
   referencePoint: string;
-  houseNumber: number;
+  houseNumber: string;
 }
 
 export interface IRegisterStudentRequest {

@@ -3,6 +3,6 @@ export interface updateAddressRequest {
   district: string;
   street: string;
   referencePoint: string;
-  houseNumber: number;
+  houseNumber: string;
   studentId: string;
 }

@@ -53,7 +53,7 @@ export class RegisterStudentPage implements OnInit {
     city: ['', [Validators.required]],
     district: ['', [Validators.required]],
     street: ['', [Validators.required]],
-    houseNumber: [0],
+    houseNumber: [''],
     referencePoint: [''],
   })
 
@@ -74,7 +74,7 @@ export class RegisterStudentPage implements OnInit {
       city: "Recife",
       district: "",
       street: "",
-      houseNumber: 0,
+      houseNumber: "",
       referencePoint: "",
     })
   }
@@ -103,7 +103,7 @@ export class RegisterStudentPage implements OnInit {
         city: this.studentForm.value.city?? "",
         district: this.studentForm.value.district?? "",
         street: this.studentForm.value.street?? "",
-        houseNumber: this.studentForm.value.houseNumber?? 0,
+        houseNumber: this.studentForm.value.houseNumber?? "",
         referencePoint: this.studentForm.value.referencePoint?? ""
       },
       payments: []

@@ -30,7 +30,7 @@ export class UpdateAddressPage implements OnInit {
     city: ['', [Validators.required]],
     district: ['', [Validators.required]],
     street: ['', [Validators.required]],
-    houseNumber: [0, [Validators.required]],
+    houseNumber: ['', [Validators.required]],
     referencePoint: ['', [Validators.required]]
   })
 
@@ -43,7 +43,7 @@ export class UpdateAddressPage implements OnInit {
         city: student?.address.city ?? "",
         district: student?.address.district ?? "",
         street: student?.address.street ?? "",
-        houseNumber: student?.address.houseNumber ?? 0,
+        houseNumber: student?.address.houseNumber ?? "",
         referencePoint: student?.address.referencePoint ?? ""
       })
     })
@@ -61,7 +61,7 @@ export class UpdateAddressPage implements OnInit {
       city: this.updateAddressForm.value.city ?? "",
       district: this.updateAddressForm.value.district ?? "",
       street: this.updateAddressForm.value.street ?? "",
-      houseNumber: this.updateAddressForm.value.houseNumber ?? 0,
+      houseNumber: this.updateAddressForm.value.houseNumber ?? "",
       referencePoint: this.updateAddressForm.value.referencePoint ?? "",
       studentId: this.studentId
     }))

@@ -4,5 +4,5 @@ export interface address {
   district: string;
   street: string;
   referencePoint: string;
-  houseNumber: number;
+  houseNumber: string;
 }
