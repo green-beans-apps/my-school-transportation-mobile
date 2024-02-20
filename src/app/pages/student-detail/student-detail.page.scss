@@ -2,6 +2,10 @@ ion-content {
   --background: #FFF;
 }
 
+h3, h4, h5, p {
+  text-transform: capitalize;
+}
+
 .buttons-header {
   width: 45px;
   height: 45px;
