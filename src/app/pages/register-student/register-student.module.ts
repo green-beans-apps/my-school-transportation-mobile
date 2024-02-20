@@ -8,6 +8,9 @@ import { RegisterStudentPageRoutingModule } from './register-student-routing.mod
 
 import { RegisterStudentPage } from './register-student.page';
 import { MaskitoDirective } from '@maskito/angular';
+import { UtilsModule } from 'src/app/utils/utils.module';
+
+
 
 @NgModule({
   imports: [
@@ -17,6 +20,7 @@ import { MaskitoDirective } from '@maskito/angular';
     RegisterStudentPageRoutingModule,
     ReactiveFormsModule,
     MaskitoDirective,
+    UtilsModule
   ],
   declarations: [RegisterStudentPage]
 })

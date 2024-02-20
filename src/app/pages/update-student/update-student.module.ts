@@ -7,6 +7,10 @@ import { UpdateStudentPage } from './update-student.page';
 import { GenericModalDialogComponent } from 'src/app/components/generic-modal-dialog/generic-modal-dialog.component';
 import { AppModule } from 'src/app/app.module';
 import { GenericModalDialogModule } from 'src/app/components/generic-modal-dialog/generic-modal-dialog.module';
+import { UtilsModule } from 'src/app/utils/utils.module';
+
+
+
 
 @NgModule({
   imports: [
@@ -15,7 +19,8 @@ import { GenericModalDialogModule } from 'src/app/components/generic-modal-dialo
     IonicModule,
     UpdateStudentPageRoutingModule,
     ReactiveFormsModule,
-    GenericModalDialogModule
+    GenericModalDialogModule,
+    UtilsModule
   ],
   declarations: [UpdateStudentPage]
 })
