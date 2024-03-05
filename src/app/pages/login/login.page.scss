@@ -8,23 +8,20 @@
 }
 
 #container {
-  gap: 40px;
+  width: 100vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background: transparent;
-  padding: 55px;
-  border-radius: 10px;
+  justify-content: center;
+
 }
 
 #form {
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 15px;
   flex-direction: column;
-  gap: 20px
+  align-items: center;
+  justify-content: center;
 }
 
 #title-container {
@@ -75,6 +72,7 @@
   height: 40px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   background: #FBBC04;
   margin-top: 5px;
   color: #fff;
