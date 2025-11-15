@@ -68,4 +68,16 @@ export class StudentDetailPage implements OnInit {
     const maskedPhone = maskitoTransform( phone, this.maskPhone);
     return maskedPhone;
   }
+
+  formatDateFromBackend(date: any): string {
+  if (!date) return '';
+  
+  if (Array.isArray(date)) {
+    const [y, m, d] = date;
+    return `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}/${y}`;
+  }
+
+  return String(date);
+}
+
 }

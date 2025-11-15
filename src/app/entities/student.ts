@@ -13,6 +13,8 @@ export interface student {
   transportationType: transportationType;
   monthlyPayment: number;
   monthlyPaymentExpiration: number;
+  contractTerminationValue: number;
+  registrationDate: string;
   responsible: responsible;
   address: address;
   payments: payment[];

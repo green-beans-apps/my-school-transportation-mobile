@@ -48,6 +48,16 @@
       <h4 class="title-atributte">Vencimento da mensalidade:</h4>
       <h4 class="result-title-atribute">{{student.monthlyPaymentExpiration}}</h4>
     </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="calendar-outline"></ion-icon>
+      <h4 class="title-atributte">Data de cadastro:</h4>
+      <h4 class="result-title-atribute">{{ formatDateFromBackend(student.registrationDate) }}</h4>
+    </div>
+    <div class="atributte">
+      <ion-icon class="icon-atributte" name="calendar-outline"></ion-icon>
+      <h4 class="title-atributte">Valor de rescisão:</h4>
+      <h4 class="result-title-atribute">R$ {{student.contractTerminationValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}}</h4>
+    </div>
 
     <div class="container-subtitle">
       <h3>Responsável</h3>

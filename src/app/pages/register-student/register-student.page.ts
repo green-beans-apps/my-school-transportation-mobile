@@ -47,6 +47,8 @@ export class RegisterStudentPage implements OnInit {
     shift: [shift.MANHA, [Validators.required]],
     monthlyPayment: [0, [Validators.required, Validators.min(1)]],
     monthlyPaymentExpiration: [0, [Validators.required, Validators.min(1), Validators.max(28)]],
+    contractTerminationValue: [0],
+    registrationDate: [''],
     responsibleName: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-ZÀ-ÖØ-öø-ÿ\s']+$/u)]],
     email: [''],
     phone: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
@@ -92,6 +94,8 @@ export class RegisterStudentPage implements OnInit {
       transportationType: this.studentForm.value.transportType as transportationType ?? transportationType.IDA_E_VOLTA,
       monthlyPayment: this.convertMonthlyPaymentToNumber(this.studentForm.value.monthlyPayment),
       monthlyPaymentExpiration: this.studentForm.value.monthlyPaymentExpiration ?? 0,
+      contractTerminationValue: this.studentForm.value.contractTerminationValue ?? 0,
+      registrationDate: this.studentForm.value.registrationDate ?? "",
       responsible: {
         id: uuidv4(),
         name: this.studentForm.value.responsibleName?? "",
