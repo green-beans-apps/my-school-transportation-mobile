@@ -34,11 +34,12 @@ export class BillingPage implements OnInit {
     if(this.billingForm.invalid) return
 
     const loginRequest = {
-      login: this.billingForm.value.ano?.replace(/[.-]/g, '') ?? "",
-      password: this.billingForm.value.mes ?? ""
-    }
+      referenceYear: this.billingForm.value.ano?.replace(/[.-]/g, '') ?? "",
+      passwordreferenceMonth: this.billingForm.value.mes ?? "",
+      conductorId: localStorage.getItem("conductorId") ?? ""
+    };
 
-    this.conductorService.login(loginRequest).subscribe(
+    this.conductorService.billingResume(loginRequest).subscribe(
       (result: billingResumoResponse) => {
         this.billingForm.reset()
       },
