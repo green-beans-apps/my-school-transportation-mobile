@@ -63,4 +63,21 @@ export class ConductorService {
     const updateUrl = `${this.baseUrl}/conductor`;
     return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
   }
+
+    billingResume(data: {ano: string, mes: string}) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token') ?? ''
+      })
+    }
+
+    const requestBody = {
+      ano: data.mes,
+      mes: data.mes
+    }
+
+    const updateUrl = `${this.baseUrl}/conductor`;
+    return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
+  }
 }

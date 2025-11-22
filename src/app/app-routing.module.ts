@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'update-conductor',
     loadChildren: () => import('./pages/update-conductor/update-conductor.module').then( m => m.UpdateConductorPageModule)
   },
+  {
+    path: 'billing',
+    loadChildren: () => import('./pages/billing/billing.module').then( m => m.BillingPageModule)
+  },
 ];
 
 @NgModule({

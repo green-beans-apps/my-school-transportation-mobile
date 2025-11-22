@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule)
       },
       {
+        path: 'billing',
+        loadChildren: () => import('../billing/billing.module').then( m => m.BillingPageModule)
+      },
+      {
         path: '',
         redirectTo: '/home/students',
         pathMatch: 'full'

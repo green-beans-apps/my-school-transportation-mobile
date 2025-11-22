@@ -1,0 +1,24 @@
+<div id="main">
+  <div id="container">
+    <form [formGroup]="billingForm" #formDir="ngForm" id="form">
+      <div id="title-container">
+        <div id="aesthetic-detail-of-the-title"></div>
+        <h2 id="title-login">Resumo do Faturamento</h2>
+      </div>
+      <ion-input formControlName="billing" [counter]="true" labelPlacement="floating" label="Ano Faturamento" maxlength="14"
+          inputmode="numeric" class="ion-input-color" inputmode="numeric">
+      </ion-input>
+      <span id="container-input-password">
+        <ion-input formControlName="billing" [counter]="true" labelPlacement="floating" label="Mes Faturamento" maxlength="14"
+            inputmode="numeric" class="ion-input-color" inputmode="numeric">
+        </ion-input>
+        <span class="invalid-credentials-span" *ngIf="invalidCredentials">
+          Dados invalidos.
+        </span>
+      </span>
+      <button expand="block" fill="solid" id="button-submit" (click)="gerarResumo()">
+        Gerar resumo
+      </button>
+    </form>
+  </div>
+</div>
