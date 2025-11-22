@@ -5,20 +5,41 @@
         <div id="aesthetic-detail-of-the-title"></div>
         <h2 id="title-login">Resumo do Faturamento</h2>
       </div>
-      <ion-input formControlName="billing" [counter]="true" labelPlacement="floating" label="Ano Faturamento" maxlength="14"
-          inputmode="numeric" class="ion-input-color" inputmode="numeric">
+      <ion-input
+        formControlName="ano"
+        [counter]="true"
+        labelPlacement="floating"
+        label="Ano Faturamento"
+        maxlength="4"
+        inputmode="numeric"
+        class="ion-input-color" *ngIf="!statusMessage">
       </ion-input>
-      <span id="container-input-password">
-        <ion-input formControlName="billing" [counter]="true" labelPlacement="floating" label="Mes Faturamento" maxlength="14"
-            inputmode="numeric" class="ion-input-color" inputmode="numeric">
-        </ion-input>
+
+      <span id="container-input-password" *ngIf="!statusMessage">
+        <ion-select
+          formControlName="mes"
+          label="Mês Faturamento"
+          interface="popover">
+
+          <ion-select-option *ngFor="let mes of monthsList" [value]="mes">
+            {{ mes }}
+          </ion-select-option>
+
+        </ion-select>
+
+
         <span class="invalid-credentials-span" *ngIf="invalidCredentials">
-          Dados invalidos.
+          Dados inválidos.
         </span>
       </span>
-      <button expand="block" fill="solid" id="button-submit" (click)="gerarResumo()">
+      <button expand="block" fill="solid" id="button-submit" (click)="gerarResumo()" *ngIf="!statusMessage">
         Gerar resumo
       </button>
+
+      <p *ngIf="statusMessage" class="status-message">
+        {{ statusMessage }}
+      </p>
+
     </form>
   </div>
 </div>

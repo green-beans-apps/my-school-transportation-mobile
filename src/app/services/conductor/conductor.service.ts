@@ -64,21 +64,22 @@ export class ConductorService {
     return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
   }
 
-    billingResume(data: {referenceYear: string, passwordreferenceMonth: string, conductorId: string}) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': window.localStorage.getItem('token') ?? ''
-      })
-    }
+    billingResume(data: {referenceMonth: string, referenceYear: string, conductorId: string}) {
+    
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': window.localStorage.getItem('token') ?? ''
+        })
+      }
 
-    const requestBody = {
-      referenceYear: data.referenceYear,
-      passwordreferenceMonth: data.passwordreferenceMonth,
-      conductorId: data.conductorId
-    }
+      const requestBody = {
+        referenceMonth: data.referenceMonth,
+        referenceYear: data.referenceYear,
+        conductorId: data.conductorId
+      }
 
-    const updateUrl = `${this.baseUrl}/SummaryGeneration`;
-    return this.http.put<conductor>(updateUrl, requestBody, httpOptions);
+      const updateUrl = `${this.baseUrl}/SummaryGeneration`;
+      return this.http.post<conductor>(updateUrl, requestBody, httpOptions);
   }
 }
