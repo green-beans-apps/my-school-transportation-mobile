@@ -6,8 +6,10 @@ import { map } from 'rxjs';
 import { GenericModalDialogComponent } from 'src/app/components/generic-modal-dialog/generic-modal-dialog.component';
 import { months } from 'src/app/entities/enums/months';
 import { payment } from 'src/app/entities/payment';
+import { student } from 'src/app/entities/student';
 import { IAppState } from 'src/app/store/app.state';
 import { studentActions } from 'src/app/store/studentActions';
+import { getMonthsFrom } from 'src/app/utils/month-utils';
 import { v4 as uuidv4 } from 'uuid';
 
 interface IPaymentRender {
@@ -45,7 +47,7 @@ export class PaymentDetailPage implements OnInit {
 
     this.student$.subscribe(student => {
       if (student) {
-        this.paymentsRender = this.generatePaymentsRender(student.payments, student.monthlyPayment);
+        this.paymentsRender = this.generatePaymentsRender(student.payments, student.monthlyPayment, student);
       }
     });
   }
@@ -67,10 +69,14 @@ export class PaymentDetailPage implements OnInit {
     this.router.navigate(['/student-detail', this.studentId]);
   }
 
-  private generatePaymentsRender(payments: payment[] | undefined, monthlyPayment: number): IPaymentRender[] {
+  private generatePaymentsRender(payments: payment[] | undefined, monthlyPayment: number, student: student): IPaymentRender[] {
     const renderedPayments: IPaymentRender[] = [];
-  
-    for (const month of Object.values(months)) {
+    
+    const mesRegistro = Number(student.registrationDate[1]);
+
+  const monthsToRender = getMonthsFrom(mesRegistro);
+
+    for (const month of monthsToRender) {
       const payment = payments?.find(p => p.paymentMonth.toUpperCase() === month.toUpperCase());
   
       renderedPayments.push({
